@@ -1,20 +1,5 @@
-function ensure_estateflow_command_center_styles() {
-    const stylesheetId = "estateflow-command-center-styles";
-    if (document.getElementById(stylesheetId)) return;
-
-    const link = document.createElement("link");
-    link.id = stylesheetId;
-    link.rel = "stylesheet";
-    link.type = "text/css";
-    link.href = "/assets/estateflow/css/estateflow.css?v=0.1.4";
-    document.head.appendChild(link);
-}
-
 frappe.pages["estateflow-command-center"].on_page_load = function (wrapper) {
-    // Frappe v16 can retain a pre-install Desk shell that does not yet contain
-    // a newly installed app's app_include_css entry. Load the page stylesheet
-    // explicitly as well; the fixed id prevents duplicate requests.
-    ensure_estateflow_command_center_styles();
+    // Styling is loaded by Frappe from the colocated standard Page CSS file.
     frappe.estateflow_command_center = new EstateFlowCommandCenter(wrapper);
 };
 

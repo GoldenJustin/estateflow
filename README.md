@@ -2,7 +2,7 @@
 
 **One seamless operating system for houses, rentals, hotels, lodges, property agents, developers, national housing, facilities and real-estate portfolios.**
 
-> Compatibility target: ERPNext/Frappe 15 and 16 · License: MIT · Current build: `0.1.4`
+> Compatibility target: ERPNext/Frappe 15 and 16 · License: MIT · Current build: `0.1.5`
 
 EstateFlow is an upgrade-safe Frappe application. It uses ERPNext Accounts, Selling, Buying, Stock, Assets, CRM and Projects instead of building a disconnected property ledger. A one-house landlord can start with a property and a tenant; a housing authority or hotel group can use portfolios, hundreds of properties, thousands of spaces, approvals and role separation.
 
@@ -235,6 +235,8 @@ EstateFlow deliberately **does not silently create tax accounts, trust accounts 
 ### In-app operating manual
 
 Open `/app/estateflow-guide` for a live, role-friendly manual. It reads the current company and setup state, shows a seven-step go-live checklist, explains exactly what **Run Setup** changes, and provides detailed playbooks for individual landlords, hotels/lodges, agents, national housing, developers, property managers, commercial leasing, communities/HOAs, investment portfolios and facilities teams. Accounting, supply chain, role guidance and troubleshooting are included on the same page.
+
+The Command Center and Guide use Frappe's standard **colocated Page CSS** convention (`page_name/page_name.css`). During app installation or migration, Frappe reads that CSS into the Page's `style` field. These two pages therefore do not depend on a separately served `/assets/estateflow/...` stylesheet and stay styled after browser, frontend or container restarts.
 
 For production Docker, use [`deploy/frappe_docker/README.md`](deploy/frappe_docker/README.md) and the supplied `apps.json` to build one image containing EstateFlow and its assets for backend, frontend, workers and scheduler.
 
@@ -476,7 +478,7 @@ Availability uses date-overlap rules across both reservations and occupancy agre
 
 ## Build status and next milestones
 
-`0.1.4` is the first broad working foundation. It includes 26 DocTypes, onboarding, Command Center, availability engine, hotel/lease/sale/housing processes, accounting and deposit document creation, utility billing, facilities procurement handoff, three reports and a customer portal.
+`0.1.5` is the first broad working foundation. It includes 26 DocTypes, onboarding, Command Center, availability engine, hotel/lease/sale/housing processes, accounting and deposit document creation, utility billing, facilities procurement handoff, three reports and a customer portal.
 
 Planned hardening and extensions:
 

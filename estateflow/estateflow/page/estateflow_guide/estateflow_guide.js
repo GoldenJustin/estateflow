@@ -1,19 +1,5 @@
-function ensure_estateflow_guide_styles() {
-    [
-        ["estateflow-command-center-styles", "/assets/estateflow/css/estateflow.css?v=0.1.4"],
-        ["estateflow-guide-styles", "/assets/estateflow/css/estateflow-guide.css?v=0.1.4"],
-    ].forEach(([id, href]) => {
-        if (document.getElementById(id)) return;
-        const link = document.createElement("link");
-        link.id = id;
-        link.rel = "stylesheet";
-        link.href = href;
-        document.head.appendChild(link);
-    });
-}
-
 frappe.pages["estateflow-guide"].on_page_load = function (wrapper) {
-    ensure_estateflow_guide_styles();
+    // Styling is loaded by Frappe from the colocated standard Page CSS file.
     frappe.estateflow_guide = new EstateFlowGuide(wrapper);
 };
 

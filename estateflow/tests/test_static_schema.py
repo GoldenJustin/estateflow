@@ -73,20 +73,21 @@ class TestEstateFlowStaticSchema(unittest.TestCase):
     def test_settings_is_single(self):
         self.assertEqual(self.doctypes["EstateFlow Settings"][1].get("issingle"), 1)
 
-    def test_command_center_styles_are_shipped_and_explicitly_loaded(self):
-        stylesheet = PACKAGE / "public" / "css" / "estateflow.css"
-        guide_stylesheet = PACKAGE / "public" / "css" / "estateflow-guide.css"
-        page_script = MODULE / "page" / "estateflow_command_center" / "estateflow_command_center.js"
-        guide_script = MODULE / "page" / "estateflow_guide" / "estateflow_guide.js"
-        hooks = (PACKAGE / "hooks.py").read_text()
-        self.assertTrue(stylesheet.is_file())
+    def test_standard_pages_ship_colocated_css(self):
+        public_stylesheet = PACKAGE / "public" / "css" / "estateflow.css"
+        command_center_stylesheet = MODULE / "page" / "estateflow_command_center" / "estateflow_command_center.css"
+        guide_stylesheet = MODULE / "page" / "estateflow_guide" / "estateflow_guide.css"
+        self.assertTrue(public_stylesheet.is_file())
+        self.assertTrue(command_center_stylesheet.is_file())
         self.assertTrue(guide_stylesheet.is_file())
-        self.assertGreater(stylesheet.stat().st_size, 1000)
-        self.assertGreater(guide_stylesheet.stat().st_size, 1000)
-        self.assertIn("/assets/estateflow/css/estateflow.css", page_script.read_text())
-        self.assertIn("/assets/estateflow/css/estateflow-guide.css", guide_script.read_text())
-        self.assertIn("/assets/estateflow/css/estateflow.css", hooks)
-        self.assertIn("/assets/estateflow/css/estateflow-guide.css", hooks)
+        self.assertGreater(command_center_stylesheet.stat().st_size, 1000)
+        self.assertGreater(guide_stylesheet.stat().st_size, command_center_stylesheet.stat().st_size)
+        # Standard Page CSS is read into the Page.style field during sync, so
+        # the pages do not depend on /assets URLs at runtime.
+        command_script = (MODULE / "page" / "estateflow_command_center" / "estateflow_command_center.js").read_text()
+        guide_script = (MODULE / "page" / "estateflow_guide" / "estateflow_guide.js").read_text()
+        self.assertNotIn("/assets/estateflow/css", command_script)
+        self.assertNotIn("/assets/estateflow/css", guide_script)
 
     def test_in_app_guide_is_standard_page(self):
         path = MODULE / "page" / "estateflow_guide" / "estateflow_guide.json"

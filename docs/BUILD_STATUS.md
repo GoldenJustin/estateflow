@@ -1,6 +1,6 @@
 # EstateFlow build status
 
-Updated: 2026-07-15 · Version: 0.1.4
+Updated: 2026-07-15 · Version: 0.1.5
 
 ## Delivered in this milestone
 
@@ -28,6 +28,7 @@ Updated: 2026-07-15 · Version: 0.1.4
 - [x] Property inspection and issue generation
 - [x] Utility meters, consumption and customer invoice
 - [x] Responsive Command Center with live aggregates
+- [x] Colocated standard Page CSS persisted in Frappe Page.style without runtime asset dependency
 - [x] In-app operating manual with live setup checklist and ten business playbooks
 - [x] Guided setup result summary explaining every change and next step
 - [x] Permanent Frappe Docker custom-image manifest and deployment guide

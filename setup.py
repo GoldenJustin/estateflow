@@ -9,7 +9,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="estateflow",
-    version="0.1.4",
+    version="0.1.5",
     description="Universal real estate, housing, hospitality and property operations for ERPNext",
     author="EstateFlow contributors",
     packages=find_packages(),

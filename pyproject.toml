@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "estateflow"
-version = "0.1.4"
+version = "0.1.5"
 description = "Universal real estate, housing, hospitality and property operations for ERPNext"
 readme = "README.md"
 requires-python = ">=3.10"
