@@ -1,0 +1,238 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-07-15 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "inspection_section",
+  "naming_series",
+  "inspection_type",
+  "status",
+  "inspection_date",
+  "inspection_column",
+  "property",
+  "space",
+  "customer",
+  "inspector",
+  "result_section",
+  "overall_condition",
+  "score",
+  "items",
+  "summary",
+  "signed_acknowledgement"
+ ],
+ "fields": [
+  {
+   "fieldname": "inspection_section",
+   "fieldtype": "Section Break",
+   "label": "Inspection"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "INSP-.YYYY.-.#####",
+   "default": "INSP-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "inspection_type",
+   "fieldtype": "Select",
+   "label": "Inspection Type",
+   "options": "Move In\nMove Out\nRoutine\nHandover\nSafety\nHousekeeping\nValuation\nDefect\nInventory",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Planned\nIn Progress\nCompleted\nApproved\nRejected",
+   "default": "Planned",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "inspection_date",
+   "fieldtype": "Date",
+   "label": "Inspection Date",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "inspection_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "label": "Property",
+   "options": "Real Estate Property",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "space",
+   "fieldtype": "Link",
+   "label": "Unit / Room / Space",
+   "options": "Property Space"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Tenant / Guest / Buyer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "inspector",
+   "fieldtype": "Link",
+   "label": "Inspector",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "result_section",
+   "fieldtype": "Section Break",
+   "label": "Result"
+  },
+  {
+   "fieldname": "overall_condition",
+   "fieldtype": "Select",
+   "label": "Overall Condition",
+   "options": "Excellent\nGood\nFair\nPoor\nUnfit"
+  },
+  {
+   "fieldname": "score",
+   "fieldtype": "Percent",
+   "label": "Score",
+   "read_only": 1
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Inspection Checklist",
+   "options": "Inspection Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "summary",
+   "fieldtype": "Text Editor",
+   "label": "Summary"
+  },
+  {
+   "fieldname": "signed_acknowledgement",
+   "fieldtype": "Attach",
+   "label": "Signed Acknowledgement"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-15 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "EstateFlow",
+ "name": "Property Inspection",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "EstateFlow Administrator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Property Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Portfolio Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Facilities Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Leasing Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Housing Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "naming_series:",
+ "title_field": "property",
+ "show_title_field_in_link": 1,
+ "is_submittable": 1
+}

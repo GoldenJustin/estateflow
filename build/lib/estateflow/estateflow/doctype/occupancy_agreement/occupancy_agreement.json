@@ -1,0 +1,409 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-07-15 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "agreement_section",
+  "naming_series",
+  "agreement_type",
+  "status",
+  "company",
+  "agreement_column",
+  "customer",
+  "property",
+  "space",
+  "reservation",
+  "term_section",
+  "start_date",
+  "end_date",
+  "notice_period_days",
+  "renewal_option",
+  "term_column",
+  "billing_frequency",
+  "billing_in_advance",
+  "invoice_due_days",
+  "next_invoice_date",
+  "charges_tab",
+  "financial_section",
+  "currency",
+  "security_deposit_amount",
+  "security_deposit_received",
+  "security_deposit_balance",
+  "deposit_reference",
+  "deposit_reference_doctype",
+  "financial_column",
+  "escalation_percentage",
+  "next_escalation_date",
+  "sales_partner",
+  "commission_rate",
+  "charges",
+  "terms_tab",
+  "terms_template",
+  "terms",
+  "signed_agreement"
+ ],
+ "fields": [
+  {
+   "fieldname": "agreement_section",
+   "fieldtype": "Section Break",
+   "label": "Agreement"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "AGR-.YYYY.-.#####",
+   "default": "AGR-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "agreement_type",
+   "fieldtype": "Select",
+   "label": "Agreement Type",
+   "options": "Residential Lease\nCommercial Lease\nStaff Housing\nStudent Housing\nSocial Housing Tenancy\nLicence to Occupy\nCo-working Membership\nManagement Agreement\nOther",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nActive\nNotice Given\nExpired\nTerminated\nRenewed",
+   "default": "Draft",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "agreement_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Tenant / Occupant",
+   "options": "Customer",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "label": "Property",
+   "options": "Real Estate Property",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "space",
+   "fieldtype": "Link",
+   "label": "Unit / Space",
+   "options": "Property Space",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "reservation",
+   "fieldtype": "Link",
+   "label": "Reservation",
+   "options": "Property Reservation"
+  },
+  {
+   "fieldname": "term_section",
+   "fieldtype": "Section Break",
+   "label": "Term"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "notice_period_days",
+   "fieldtype": "Int",
+   "label": "Notice Period (Days)",
+   "default": "30",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "renewal_option",
+   "fieldtype": "Check",
+   "label": "Renewal Option",
+   "default": "1"
+  },
+  {
+   "fieldname": "term_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "billing_frequency",
+   "fieldtype": "Select",
+   "label": "Billing Frequency",
+   "options": "Monthly\nQuarterly\nHalf-yearly\nYearly\nOne Time",
+   "default": "Monthly",
+   "reqd": 1
+  },
+  {
+   "fieldname": "billing_in_advance",
+   "fieldtype": "Check",
+   "label": "Bill in Advance",
+   "default": "1"
+  },
+  {
+   "fieldname": "invoice_due_days",
+   "fieldtype": "Int",
+   "label": "Invoice Due Days",
+   "default": "7",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "next_invoice_date",
+   "fieldtype": "Date",
+   "label": "Next Invoice Date",
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "charges_tab",
+   "fieldtype": "Tab Break",
+   "label": "Charges"
+  },
+  {
+   "fieldname": "financial_section",
+   "fieldtype": "Section Break",
+   "label": "Financial Terms"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "security_deposit_amount",
+   "fieldtype": "Currency",
+   "label": "Security Deposit",
+   "options": "currency",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "security_deposit_received",
+   "fieldtype": "Check",
+   "label": "Deposit Received",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "deposit_reference",
+   "fieldtype": "Dynamic Link",
+   "label": "Deposit Reference",
+   "options": "deposit_reference_doctype",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "deposit_reference_doctype",
+   "fieldtype": "Link",
+   "label": "Deposit Reference Type",
+   "options": "DocType",
+   "hidden": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "financial_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "escalation_percentage",
+   "fieldtype": "Percent",
+   "label": "Annual Escalation %"
+  },
+  {
+   "fieldname": "next_escalation_date",
+   "fieldtype": "Date",
+   "label": "Next Escalation Date",
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "sales_partner",
+   "fieldtype": "Link",
+   "label": "Agency / Sales Partner",
+   "options": "Sales Partner"
+  },
+  {
+   "fieldname": "commission_rate",
+   "fieldtype": "Percent",
+   "label": "Commission %"
+  },
+  {
+   "fieldname": "charges",
+   "fieldtype": "Table",
+   "label": "Recurring Charges",
+   "options": "Agreement Charge",
+   "reqd": 1
+  },
+  {
+   "fieldname": "terms_tab",
+   "fieldtype": "Tab Break",
+   "label": "Terms"
+  },
+  {
+   "fieldname": "terms_template",
+   "fieldtype": "Link",
+   "label": "Terms Template",
+   "options": "Terms and Conditions"
+  },
+  {
+   "fieldname": "terms",
+   "fieldtype": "Text Editor",
+   "label": "Terms and Conditions"
+  },
+  {
+   "fieldname": "signed_agreement",
+   "fieldtype": "Attach",
+   "label": "Signed Agreement"
+  },
+  {
+   "fieldname": "security_deposit_balance",
+   "fieldtype": "Currency",
+   "label": "Deposit Balance",
+   "options": "currency",
+   "read_only": 1,
+   "allow_on_submit": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-15 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "EstateFlow",
+ "name": "Occupancy Agreement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "EstateFlow Administrator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Property Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Portfolio Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Leasing Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Housing Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Accounts Manager",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  },
+  {
+   "role": "Accounts User",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "naming_series:",
+ "title_field": "customer",
+ "show_title_field_in_link": 1,
+ "search_fields": "customer,property,space",
+ "is_submittable": 1
+}

@@ -1,0 +1,223 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-07-15 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "appointment_section",
+  "naming_series",
+  "enquiry",
+  "property",
+  "space",
+  "scheduled_start",
+  "scheduled_end",
+  "appointment_column",
+  "customer",
+  "visitor_name",
+  "mobile_no",
+  "agent",
+  "status",
+  "feedback_section",
+  "interest_level",
+  "feedback",
+  "next_action"
+ ],
+ "fields": [
+  {
+   "fieldname": "appointment_section",
+   "fieldtype": "Section Break",
+   "label": "Appointment"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "VIEW-.YYYY.-.#####",
+   "default": "VIEW-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "enquiry",
+   "fieldtype": "Link",
+   "label": "Enquiry",
+   "options": "Property Enquiry"
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "label": "Property",
+   "options": "Real Estate Property",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "space",
+   "fieldtype": "Link",
+   "label": "Unit / Room / Space",
+   "options": "Property Space"
+  },
+  {
+   "fieldname": "scheduled_start",
+   "fieldtype": "Datetime",
+   "label": "Scheduled Start",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "scheduled_end",
+   "fieldtype": "Datetime",
+   "label": "Scheduled End"
+  },
+  {
+   "fieldname": "appointment_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "visitor_name",
+   "fieldtype": "Data",
+   "label": "Visitor Name",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "label": "Mobile Number",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "agent",
+   "fieldtype": "Link",
+   "label": "Agent / Officer",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Scheduled\nConfirmed\nCompleted\nNo Show\nCancelled\nRescheduled",
+   "default": "Scheduled",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "feedback_section",
+   "fieldtype": "Section Break",
+   "label": "Feedback"
+  },
+  {
+   "fieldname": "interest_level",
+   "fieldtype": "Select",
+   "label": "Interest Level",
+   "options": "Not Interested\nLow\nMedium\nHigh\nReady to Offer"
+  },
+  {
+   "fieldname": "feedback",
+   "fieldtype": "Small Text",
+   "label": "Feedback"
+  },
+  {
+   "fieldname": "next_action",
+   "fieldtype": "Small Text",
+   "label": "Next Action"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-15 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "EstateFlow",
+ "name": "Viewing Appointment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "EstateFlow Administrator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Property Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Portfolio Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Leasing Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1
+  },
+  {
+   "role": "Estate Agent",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "naming_series:",
+ "title_field": "visitor_name",
+ "show_title_field_in_link": 1
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://github.com/frappe/erpnext.git",
+    "branch": "version-16"
+  },
+  {
+    "url": "https://github.com/frappe/hrms.git",
+    "branch": "version-16"
+  },
+  {
+    "url": "https://github.com/frappe/education.git",
+    "branch": "version-16"
+  },
+  {
+    "url": "https://github.com/GoldenJustin/logistics_management.git",
+    "branch": "main"
+  },
+  {
+    "url": "https://github.com/GoldenJustin/estateflow.git",
+    "branch": "main"
+  }
+]

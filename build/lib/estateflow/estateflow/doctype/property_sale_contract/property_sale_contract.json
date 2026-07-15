@@ -1,0 +1,332 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-07-15 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "contract_section",
+  "naming_series",
+  "status",
+  "contract_date",
+  "company",
+  "contract_column",
+  "customer",
+  "property",
+  "space",
+  "reservation",
+  "value_section",
+  "currency",
+  "sale_price",
+  "discount_amount",
+  "contract_value",
+  "value_column",
+  "deposit_amount",
+  "sales_partner",
+  "commission_rate",
+  "handover_date",
+  "sale_subject_to_tenancy",
+  "installments_tab",
+  "installments",
+  "terms_tab",
+  "terms",
+  "signed_contract",
+  "actual_handover_date",
+  "title_transfer_reference"
+ ],
+ "fields": [
+  {
+   "fieldname": "contract_section",
+   "fieldtype": "Section Break",
+   "label": "Sale Contract"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "SALE-.YYYY.-.#####",
+   "default": "SALE-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nActive\nCompleted\nCancelled\nDefaulted\nTransferred",
+   "default": "Draft",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "contract_date",
+   "fieldtype": "Date",
+   "label": "Contract Date",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Buyer",
+   "options": "Customer",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "label": "Property",
+   "options": "Real Estate Property",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "space",
+   "fieldtype": "Link",
+   "label": "Unit / Plot / Space",
+   "options": "Property Space",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "reservation",
+   "fieldtype": "Link",
+   "label": "Reservation",
+   "options": "Property Reservation"
+  },
+  {
+   "fieldname": "value_section",
+   "fieldtype": "Section Break",
+   "label": "Contract Value"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sale_price",
+   "fieldtype": "Currency",
+   "label": "Sale Price",
+   "options": "currency",
+   "reqd": 1,
+   "non_negative": 1
+  },
+  {
+   "fieldname": "discount_amount",
+   "fieldtype": "Currency",
+   "label": "Discount",
+   "options": "currency",
+   "default": "0",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "contract_value",
+   "fieldtype": "Currency",
+   "label": "Contract Value",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "value_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "deposit_amount",
+   "fieldtype": "Currency",
+   "label": "Deposit",
+   "options": "currency",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "sales_partner",
+   "fieldtype": "Link",
+   "label": "Agency / Sales Partner",
+   "options": "Sales Partner"
+  },
+  {
+   "fieldname": "commission_rate",
+   "fieldtype": "Percent",
+   "label": "Commission %"
+  },
+  {
+   "fieldname": "handover_date",
+   "fieldtype": "Date",
+   "label": "Expected Handover"
+  },
+  {
+   "fieldname": "installments_tab",
+   "fieldtype": "Tab Break",
+   "label": "Payment Plan"
+  },
+  {
+   "fieldname": "installments",
+   "fieldtype": "Table",
+   "label": "Installments",
+   "options": "Sale Installment",
+   "reqd": 1
+  },
+  {
+   "fieldname": "terms_tab",
+   "fieldtype": "Tab Break",
+   "label": "Terms and Handover"
+  },
+  {
+   "fieldname": "terms",
+   "fieldtype": "Text Editor",
+   "label": "Terms and Conditions"
+  },
+  {
+   "fieldname": "signed_contract",
+   "fieldtype": "Attach",
+   "label": "Signed Contract"
+  },
+  {
+   "fieldname": "actual_handover_date",
+   "fieldtype": "Date",
+   "label": "Actual Handover",
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "title_transfer_reference",
+   "fieldtype": "Data",
+   "label": "Title Transfer Reference",
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "sale_subject_to_tenancy",
+   "fieldtype": "Check",
+   "label": "Sale Subject to Existing Tenancy",
+   "default": "0",
+   "description": "Allow this sale while an active occupancy agreement remains in force."
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-15 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "EstateFlow",
+ "name": "Property Sale Contract",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "EstateFlow Administrator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Property Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Portfolio Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Estate Agent",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Housing Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Accounts Manager",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  },
+  {
+   "role": "Accounts User",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "naming_series:",
+ "title_field": "customer",
+ "show_title_field_in_link": 1,
+ "search_fields": "customer,property,space",
+ "is_submittable": 1
+}

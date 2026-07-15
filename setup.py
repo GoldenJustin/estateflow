@@ -1,10 +1,15 @@
+"""Legacy setuptools entry point used by Bench/uv editable installs.
+
+Keep the version literal here: importing ``estateflow`` during an isolated PEP
+517 build fails because the project package is not yet on sys.path.
+"""
+
 from setuptools import find_packages, setup
 
-from estateflow import __version__
 
 setup(
     name="estateflow",
-    version=__version__,
+    version="0.1.4",
     description="Universal real estate, housing, hospitality and property operations for ERPNext",
     author="EstateFlow contributors",
     packages=find_packages(),

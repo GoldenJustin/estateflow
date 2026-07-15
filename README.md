@@ -2,7 +2,7 @@
 
 **One seamless operating system for houses, rentals, hotels, lodges, property agents, developers, national housing, facilities and real-estate portfolios.**
 
-> Compatibility target: ERPNext/Frappe 15 and 16 · License: MIT · Current build: `0.1.0`
+> Compatibility target: ERPNext/Frappe 15 and 16 · License: MIT · Current build: `0.1.4`
 
 EstateFlow is an upgrade-safe Frappe application. It uses ERPNext Accounts, Selling, Buying, Stock, Assets, CRM and Projects instead of building a disconnected property ledger. A one-house landlord can start with a property and a tenant; a housing authority or hotel group can use portfolios, hundreds of properties, thousands of spaces, approvals and role separation.
 
@@ -232,6 +232,12 @@ The first visit opens a setup dialog. A user chooses:
 
 EstateFlow deliberately **does not silently create tax accounts, trust accounts or statutory rules**. Those are jurisdiction- and policy-specific accounting decisions.
 
+### In-app operating manual
+
+Open `/app/estateflow-guide` for a live, role-friendly manual. It reads the current company and setup state, shows a seven-step go-live checklist, explains exactly what **Run Setup** changes, and provides detailed playbooks for individual landlords, hotels/lodges, agents, national housing, developers, property managers, commercial leasing, communities/HOAs, investment portfolios and facilities teams. Accounting, supply chain, role guidance and troubleshooting are included on the same page.
+
+For production Docker, use [`deploy/frappe_docker/README.md`](deploy/frappe_docker/README.md) and the supplied `apps.json` to build one image containing EstateFlow and its assets for backend, frontend, workers and scheduler.
+
 ---
 
 ## Accounting integration
@@ -375,6 +381,21 @@ bench --site your-site.example migrate
 bench build --app estateflow
 ```
 
+If a failed `bench get-app` did not register the app, add it without risking a missing newline in `sites/apps.txt`:
+
+```bash
+python - <<'PY'
+from pathlib import Path
+path = Path("sites/apps.txt")
+apps = path.read_text().splitlines()
+if "estateflow" not in apps:
+    apps.append("estateflow")
+path.write_text("\n".join(apps) + "\n")
+PY
+```
+
+Do not use a plain `echo estateflow >> sites/apps.txt` unless the file is known to end with a newline; otherwise the previous app and EstateFlow can become one invalid name.
+
 Open:
 
 ```text
@@ -455,7 +476,7 @@ Availability uses date-overlap rules across both reservations and occupancy agre
 
 ## Build status and next milestones
 
-`0.1.0` is the first broad working foundation. It includes 26 DocTypes, onboarding, Command Center, availability engine, hotel/lease/sale/housing processes, accounting and deposit document creation, utility billing, facilities procurement handoff, three reports and a customer portal.
+`0.1.4` is the first broad working foundation. It includes 26 DocTypes, onboarding, Command Center, availability engine, hotel/lease/sale/housing processes, accounting and deposit document creation, utility billing, facilities procurement handoff, three reports and a customer portal.
 
 Planned hardening and extensions:
 

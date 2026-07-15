@@ -1,0 +1,33 @@
+{% extends "templates/web.html" %}
+{% block page_content %}
+<style>
+.ef-portal{--ink:#172033;--muted:#667085;--line:#e6e9ef;--brand:#4f46e5;color:var(--ink);max-width:1120px;margin:0 auto 60px}.ef-portal-hero{color:#fff;border-radius:22px;padding:34px;margin:18px 0 22px;background:radial-gradient(circle at 85% 0,rgba(255,255,255,.22),transparent 30%),linear-gradient(125deg,#2936a8,#6d4dd3)}.ef-portal-hero h1{color:#fff;margin:6px 0}.ef-portal-hero p{color:rgba(255,255,255,.75);margin:0}.ef-portal-tag{font-size:10px;letter-spacing:.13em;font-weight:800}.ef-portal h2{font-size:18px;margin:28px 0 12px}.ef-portal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.ef-portal-card{display:block;color:var(--ink)!important;text-decoration:none!important;border:1px solid var(--line);border-radius:16px;padding:17px;background:#fff;box-shadow:0 4px 14px rgba(20,31,56,.04)}.ef-portal-card:hover{border-color:#bebaf8;transform:translateY(-1px)}.ef-portal-card header{display:flex;justify-content:space-between;gap:8px;margin-bottom:12px}.ef-portal-card small{color:var(--muted)}.ef-portal-card b,.ef-portal-card span{display:block}.ef-portal-pill{font-size:9px!important;background:#efefff;color:var(--brand);padding:4px 7px;border-radius:99px;height:max-content}.ef-portal-meta{font-size:11px;color:var(--muted);margin-top:8px}.ef-portal-value{font-size:17px;margin-top:7px}.ef-portal-empty{padding:26px;border:1px dashed #cfd3dc;border-radius:14px;text-align:center;color:var(--muted);background:#fafbfc}@media(max-width:800px){.ef-portal-grid{grid-template-columns:1fr}.ef-portal-hero{padding:25px;border-radius:16px}}
+</style>
+<main class="ef-portal">
+  <section class="ef-portal-hero"><span class="ef-portal-tag">ESTATEFLOW SELF-SERVICE</span><h1>{{ _("My Estate") }}</h1><p>{{ _("Your stays, home, agreements and account in one simple view.") }}</p></section>
+  {% if no_customer %}
+  <div class="ef-portal-empty"><h3>{{ _("Your profile is almost ready") }}</h3><p>{{ _("Ask the property team to link your website user to your Customer contact.") }}</p></div>
+  {% else %}
+    <h2>{{ _("Bookings and reservations") }}</h2>
+    <div class="ef-portal-grid">
+    {% for row in reservations %}
+      <div class="ef-portal-card"><header><b>{{ row.property }}</b><span class="ef-portal-pill">{{ _(row.status) }}</span></header><span>{{ row.space }} · {{ _(row.reservation_type) }}</span><small>{{ frappe.format_date(row.arrival_date) }} → {{ frappe.format_date(row.departure_date) }}</small><b class="ef-portal-value">{{ frappe.format_value(row.grand_total, {"fieldtype":"Currency","options":row.currency}) }}</b></div>
+    {% else %}<div class="ef-portal-empty">{{ _("No bookings yet.") }}</div>{% endfor %}
+    </div>
+
+    <h2>{{ _("My home and agreements") }}</h2>
+    <div class="ef-portal-grid">
+    {% for row in agreements %}
+      <div class="ef-portal-card"><header><b>{{ row.property }}</b><span class="ef-portal-pill">{{ _(row.status) }}</span></header><span>{{ row.space }} · {{ _(row.agreement_type) }}</span><small>{{ frappe.format_date(row.start_date) }} → {{ frappe.format_date(row.end_date) }}</small></div>
+    {% else %}<div class="ef-portal-empty">{{ _("No current occupancy agreements.") }}</div>{% endfor %}
+    </div>
+
+    <h2>{{ _("Bills and payments") }}</h2>
+    <div class="ef-portal-grid">
+    {% for row in invoices %}
+      <a class="ef-portal-card" href="/invoices/{{ row.name }}"><header><b>{{ row.name }}</b><span class="ef-portal-pill">{{ _(row.status) }}</span></header><span>{{ row.estateflow_property }}</span><small>{{ _("Due") }} {{ frappe.format_date(row.due_date) }}</small><b class="ef-portal-value">{{ frappe.format_value(row.outstanding_amount, {"fieldtype":"Currency","options":row.currency}) }} {{ _("outstanding") }}</b></a>
+    {% else %}<div class="ef-portal-empty">{{ _("No property invoices.") }}</div>{% endfor %}
+    </div>
+  {% endif %}
+</main>
+{% endblock %}

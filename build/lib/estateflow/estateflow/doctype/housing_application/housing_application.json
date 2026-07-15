@@ -1,0 +1,292 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-07-15 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "application_section",
+  "naming_series",
+  "application_type",
+  "status",
+  "application_date",
+  "application_column",
+  "customer",
+  "applicant_name",
+  "identity_number",
+  "mobile_no",
+  "email",
+  "household_section",
+  "household_size",
+  "dependants",
+  "monthly_household_income",
+  "currency",
+  "household_column",
+  "special_needs",
+  "priority_score",
+  "eligibility_result",
+  "reviewed_by",
+  "preference_section",
+  "preferred_property",
+  "preferred_space_type",
+  "preferred_area",
+  "bedrooms_required",
+  "supporting_documents",
+  "review_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "application_section",
+   "fieldtype": "Section Break",
+   "label": "Housing Application"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "HAPP-.YYYY.-.#####",
+   "default": "HAPP-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "application_type",
+   "fieldtype": "Select",
+   "label": "Application Type",
+   "options": "Social Rental\nAffordable Purchase\nStaff Housing\nStudent Housing\nEmergency Housing\nGeneral Allocation",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nSubmitted\nUnder Review\nEligible\nWaitlisted\nAllocated\nRejected\nWithdrawn",
+   "default": "Draft",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "application_date",
+   "fieldtype": "Date",
+   "label": "Application Date",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "application_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Applicant",
+   "options": "Customer",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "applicant_name",
+   "fieldtype": "Data",
+   "label": "Applicant Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "identity_number",
+   "fieldtype": "Data",
+   "label": "National ID / Identity Number"
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "label": "Mobile Number",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "household_section",
+   "fieldtype": "Section Break",
+   "label": "Household and Eligibility"
+  },
+  {
+   "fieldname": "household_size",
+   "fieldtype": "Int",
+   "label": "Household Size",
+   "default": "1",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "dependants",
+   "fieldtype": "Int",
+   "label": "Dependants",
+   "default": "0",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "monthly_household_income",
+   "fieldtype": "Currency",
+   "label": "Monthly Household Income",
+   "options": "currency"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "household_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "special_needs",
+   "fieldtype": "Small Text",
+   "label": "Special Needs"
+  },
+  {
+   "fieldname": "priority_score",
+   "fieldtype": "Float",
+   "label": "Priority Score",
+   "read_only": 1
+  },
+  {
+   "fieldname": "eligibility_result",
+   "fieldtype": "Select",
+   "label": "Eligibility Result",
+   "options": "Pending\nEligible\nNot Eligible\nRequires Review",
+   "default": "Pending"
+  },
+  {
+   "fieldname": "reviewed_by",
+   "fieldtype": "Link",
+   "label": "Reviewed By",
+   "options": "User"
+  },
+  {
+   "fieldname": "preference_section",
+   "fieldtype": "Section Break",
+   "label": "Housing Preference"
+  },
+  {
+   "fieldname": "preferred_property",
+   "fieldtype": "Link",
+   "label": "Preferred Scheme / Property",
+   "options": "Real Estate Property"
+  },
+  {
+   "fieldname": "preferred_space_type",
+   "fieldtype": "Select",
+   "label": "Preferred Space Type",
+   "options": "House\nApartment\nRoom\nLand Plot\nOther"
+  },
+  {
+   "fieldname": "preferred_area",
+   "fieldtype": "Data",
+   "label": "Preferred Area / Location"
+  },
+  {
+   "fieldname": "bedrooms_required",
+   "fieldtype": "Int",
+   "label": "Bedrooms Required",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "supporting_documents",
+   "fieldtype": "Attach",
+   "label": "Supporting Documents"
+  },
+  {
+   "fieldname": "review_notes",
+   "fieldtype": "Text Editor",
+   "label": "Review Notes"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-15 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "EstateFlow",
+ "name": "Housing Application",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "EstateFlow Administrator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Property Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Portfolio Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Housing Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "naming_series:",
+ "title_field": "applicant_name",
+ "show_title_field_in_link": 1,
+ "search_fields": "applicant_name,identity_number,mobile_no"
+}
