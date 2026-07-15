@@ -1,0 +1,235 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-07-15 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "reading_section",
+  "naming_series",
+  "meter",
+  "reading_date",
+  "reading",
+  "reading_column",
+  "previous_reading",
+  "consumption",
+  "reading_type",
+  "reader",
+  "billing_section",
+  "customer",
+  "amount",
+  "currency",
+  "sales_invoice",
+  "photo",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "reading_section",
+   "fieldtype": "Section Break",
+   "label": "Meter Reading"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "READ-.YYYY.-.#####",
+   "default": "READ-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "meter",
+   "fieldtype": "Link",
+   "label": "Meter",
+   "options": "Utility Meter",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "reading_date",
+   "fieldtype": "Date",
+   "label": "Reading Date",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "reading",
+   "fieldtype": "Float",
+   "label": "Current Reading",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "reading_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "previous_reading",
+   "fieldtype": "Float",
+   "label": "Previous Reading",
+   "read_only": 1
+  },
+  {
+   "fieldname": "consumption",
+   "fieldtype": "Float",
+   "label": "Consumption",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "reading_type",
+   "fieldtype": "Select",
+   "label": "Reading Type",
+   "options": "Actual\nEstimated\nOpening\nFinal",
+   "default": "Actual"
+  },
+  {
+   "fieldname": "reader",
+   "fieldtype": "Link",
+   "label": "Read By",
+   "options": "User"
+  },
+  {
+   "fieldname": "billing_section",
+   "fieldtype": "Section Break",
+   "label": "Billing"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Bill To",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "label": "Sales Invoice",
+   "options": "Sales Invoice",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "photo",
+   "fieldtype": "Attach Image",
+   "label": "Meter Photo"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-15 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "EstateFlow",
+ "name": "Utility Reading",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "EstateFlow Administrator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Property Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Portfolio Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Facilities Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Accounts Manager",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  },
+  {
+   "role": "Accounts User",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "naming_series:",
+ "title_field": "meter",
+ "show_title_field_in_link": 1,
+ "is_submittable": 1
+}

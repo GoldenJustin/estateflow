@@ -1,0 +1,499 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-07-15 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "identity_section",
+  "naming_series",
+  "space_name",
+  "property",
+  "parent_space",
+  "identity_column",
+  "space_type",
+  "floor_or_zone",
+  "status",
+  "occupancy_status",
+  "use_section",
+  "rentable",
+  "sellable",
+  "bookable",
+  "allocatable",
+  "use_column",
+  "housekeeping_status",
+  "current_customer",
+  "current_agreement",
+  "specification_tab",
+  "capacity_section",
+  "bedrooms",
+  "bathrooms",
+  "beds",
+  "max_adults",
+  "max_children",
+  "capacity_column",
+  "area",
+  "area_uom",
+  "furnished",
+  "accessible",
+  "amenities",
+  "pricing_tab",
+  "pricing_section",
+  "currency",
+  "base_rent",
+  "rent_frequency",
+  "pricing_column",
+  "nightly_rate",
+  "sale_price",
+  "security_deposit",
+  "accounting_tab",
+  "accounting_section",
+  "cost_center",
+  "project",
+  "income_account",
+  "item_code",
+  "details_tab",
+  "description",
+  "space_image"
+ ],
+ "fields": [
+  {
+   "fieldname": "identity_section",
+   "fieldtype": "Section Break",
+   "label": "Space Identity"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "SPACE-.YYYY.-.#####",
+   "default": "SPACE-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "space_name",
+   "fieldtype": "Data",
+   "label": "Unit / Room / Space Name",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "label": "Property",
+   "options": "Real Estate Property",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "parent_space",
+   "fieldtype": "Link",
+   "label": "Parent Space",
+   "options": "Property Space"
+  },
+  {
+   "fieldname": "identity_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "space_type",
+   "fieldtype": "Select",
+   "label": "Space Type",
+   "options": "House\nApartment\nVilla\nRoom\nBed\nHotel Room\nLodge Room\nShop\nOffice\nWarehouse\nIndustrial Unit\nLand Plot\nParking\nStorage\nDesk\nAdvertising Space\nCommon Area\nOther",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "floor_or_zone",
+   "fieldtype": "Data",
+   "label": "Floor / Zone"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Physical Status",
+   "options": "Ready\nUnder Construction\nUnder Maintenance\nOut of Service\nInactive",
+   "default": "Ready",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "occupancy_status",
+   "fieldtype": "Select",
+   "label": "Occupancy Status",
+   "options": "Available\nReserved\nOccupied\nUnder Contract\nSold\nOwner Occupied\nBlocked",
+   "default": "Available",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "use_section",
+   "fieldtype": "Section Break",
+   "label": "Permitted Use"
+  },
+  {
+   "fieldname": "rentable",
+   "fieldtype": "Check",
+   "label": "Available for Long-term Rent",
+   "default": "1"
+  },
+  {
+   "fieldname": "sellable",
+   "fieldtype": "Check",
+   "label": "Available for Sale",
+   "default": "0"
+  },
+  {
+   "fieldname": "bookable",
+   "fieldtype": "Check",
+   "label": "Available for Short Stay",
+   "default": "0"
+  },
+  {
+   "fieldname": "allocatable",
+   "fieldtype": "Check",
+   "label": "Available for Housing Allocation",
+   "default": "0"
+  },
+  {
+   "fieldname": "use_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "housekeeping_status",
+   "fieldtype": "Select",
+   "label": "Housekeeping Status",
+   "options": "Clean\nDirty\nInspected\nIn Progress\nNot Applicable",
+   "default": "Not Applicable"
+  },
+  {
+   "fieldname": "current_customer",
+   "fieldtype": "Link",
+   "label": "Current Occupant / Guest",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_agreement",
+   "fieldtype": "Link",
+   "label": "Current Agreement",
+   "options": "Occupancy Agreement",
+   "read_only": 1
+  },
+  {
+   "fieldname": "specification_tab",
+   "fieldtype": "Tab Break",
+   "label": "Specification"
+  },
+  {
+   "fieldname": "capacity_section",
+   "fieldtype": "Section Break",
+   "label": "Capacity and Specification"
+  },
+  {
+   "fieldname": "bedrooms",
+   "fieldtype": "Int",
+   "label": "Bedrooms",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "bathrooms",
+   "fieldtype": "Float",
+   "label": "Bathrooms",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "beds",
+   "fieldtype": "Int",
+   "label": "Beds",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "max_adults",
+   "fieldtype": "Int",
+   "label": "Maximum Adults",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "max_children",
+   "fieldtype": "Int",
+   "label": "Maximum Children",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "capacity_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "area",
+   "fieldtype": "Float",
+   "label": "Area",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "area_uom",
+   "fieldtype": "Link",
+   "label": "Area UOM",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "furnished",
+   "fieldtype": "Select",
+   "label": "Furnished",
+   "options": "Unfurnished\nPartly Furnished\nFully Furnished"
+  },
+  {
+   "fieldname": "accessible",
+   "fieldtype": "Check",
+   "label": "Accessible",
+   "default": "0"
+  },
+  {
+   "fieldname": "amenities",
+   "fieldtype": "Table",
+   "label": "Amenities",
+   "options": "Space Amenity"
+  },
+  {
+   "fieldname": "pricing_tab",
+   "fieldtype": "Tab Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "pricing_section",
+   "fieldtype": "Section Break",
+   "label": "Default Pricing"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "base_rent",
+   "fieldtype": "Currency",
+   "label": "Base Rent",
+   "options": "currency",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "rent_frequency",
+   "fieldtype": "Select",
+   "label": "Rent Frequency",
+   "options": "Daily\nWeekly\nMonthly\nQuarterly\nYearly",
+   "default": "Monthly"
+  },
+  {
+   "fieldname": "pricing_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "nightly_rate",
+   "fieldtype": "Currency",
+   "label": "Nightly Rate",
+   "options": "currency",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "sale_price",
+   "fieldtype": "Currency",
+   "label": "Sale Price",
+   "options": "currency",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "security_deposit",
+   "fieldtype": "Currency",
+   "label": "Suggested Security Deposit",
+   "options": "currency",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "accounting_tab",
+   "fieldtype": "Tab Break",
+   "label": "Accounting"
+  },
+  {
+   "fieldname": "accounting_section",
+   "fieldtype": "Section Break",
+   "label": "Dimensions"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "fieldname": "income_account",
+   "fieldtype": "Link",
+   "label": "Income Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Default Service Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "space_image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-15 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "EstateFlow",
+ "name": "Property Space",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "EstateFlow Administrator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Property Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Portfolio Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Leasing Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1
+  },
+  {
+   "role": "Estate Agent",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1
+  },
+  {
+   "role": "Front Desk Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1
+  },
+  {
+   "role": "Housing Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1
+  },
+  {
+   "role": "Facilities Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1
+  },
+  {
+   "role": "Accounts Manager",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  },
+  {
+   "role": "Accounts User",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "naming_series:",
+ "title_field": "space_name",
+ "show_title_field_in_link": 1,
+ "search_fields": "space_name,property,space_type"
+}

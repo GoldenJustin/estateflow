@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-07-15 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "charge_date",
+  "charge_type",
+  "item_code",
+  "description",
+  "qty",
+  "rate",
+  "amount",
+  "income_account",
+  "cost_center"
+ ],
+ "fields": [
+  {
+   "fieldname": "charge_date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "charge_type",
+   "fieldtype": "Select",
+   "label": "Charge Type",
+   "options": "Accommodation\nRent\nService Charge\nMeal\nLaundry\nTransport\nUtility\nTax\nDiscount\nOther",
+   "default": "Accommodation",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Item",
+   "options": "Item",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "label": "Quantity",
+   "default": "1",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "label": "Rate",
+   "options": "parent.currency",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "options": "parent.currency",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "income_account",
+   "fieldtype": "Link",
+   "label": "Income Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-15 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "EstateFlow",
+ "name": "Reservation Charge",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0,
+ "istable": 1,
+ "editable_grid": 1
+}

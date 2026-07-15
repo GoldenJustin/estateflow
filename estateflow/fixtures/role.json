@@ -1,0 +1,83 @@
+[
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "doctype": "Role",
+  "home_page": "",
+  "is_custom": 1,
+  "name": "EstateFlow Administrator",
+  "role_name": "EstateFlow Administrator"
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "doctype": "Role",
+  "home_page": "",
+  "is_custom": 1,
+  "name": "Portfolio Manager",
+  "role_name": "Portfolio Manager"
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "doctype": "Role",
+  "home_page": "",
+  "is_custom": 1,
+  "name": "Property Manager",
+  "role_name": "Property Manager"
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "doctype": "Role",
+  "home_page": "",
+  "is_custom": 1,
+  "name": "Leasing Officer",
+  "role_name": "Leasing Officer"
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "doctype": "Role",
+  "home_page": "",
+  "is_custom": 1,
+  "name": "Estate Agent",
+  "role_name": "Estate Agent"
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "doctype": "Role",
+  "home_page": "",
+  "is_custom": 1,
+  "name": "Front Desk Officer",
+  "role_name": "Front Desk Officer"
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "doctype": "Role",
+  "home_page": "",
+  "is_custom": 1,
+  "name": "Housing Officer",
+  "role_name": "Housing Officer"
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "doctype": "Role",
+  "home_page": "",
+  "is_custom": 1,
+  "name": "Facilities Officer",
+  "role_name": "Facilities Officer"
+ },
+ {
+  "desk_access": 0,
+  "disabled": 0,
+  "doctype": "Role",
+  "home_page": "/my-estate",
+  "is_custom": 1,
+  "name": "EstateFlow Portal User",
+  "role_name": "EstateFlow Portal User"
+ }
+]

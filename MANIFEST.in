@@ -1,0 +1,4 @@
+include README.md
+include LICENSE
+recursive-include estateflow *.css *.csv *.html *.ico *.js *.json *.md *.png *.py *.svg *.txt
+recursive-exclude estateflow *.pyc

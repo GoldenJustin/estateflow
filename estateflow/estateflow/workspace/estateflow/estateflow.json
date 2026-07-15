@@ -1,0 +1,279 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"ef-header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>EstateFlow</b></span>\",\"col\":12}},{\"id\":\"ef-command\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Command Center\",\"col\":3}},{\"id\":\"ef-property\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Properties\",\"col\":3}},{\"id\":\"ef-space\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Units, Rooms & Spaces\",\"col\":3}},{\"id\":\"ef-maint\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Maintenance\",\"col\":3}},{\"id\":\"ef-operate\",\"type\":\"card\",\"data\":{\"card_name\":\"Operate\",\"col\":4}},{\"id\":\"ef-earn\",\"type\":\"card\",\"data\":{\"card_name\":\"Lease, Stay & Sell\",\"col\":4}},{\"id\":\"ef-control\",\"type\":\"card\",\"data\":{\"card_name\":\"Control & Report\",\"col\":4}}]",
+ "creation": "2026-07-15 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "building",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "EstateFlow",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Operate",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Portfolios",
+   "link_to": "Property Portfolio",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Properties",
+   "link_to": "Real Estate Property",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Units, Rooms and Spaces",
+   "link_to": "Property Space",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Maintenance Requests",
+   "link_to": "Maintenance Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Work Orders",
+   "link_to": "Property Work Order",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Inspections",
+   "link_to": "Property Inspection",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Utility Meters",
+   "link_to": "Utility Meter",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lease, Stay & Sell",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Enquiries",
+   "link_to": "Property Enquiry",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Listings",
+   "link_to": "Property Listing",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Viewings",
+   "link_to": "Viewing Appointment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Offers",
+   "link_to": "Property Offer",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reservations and Bookings",
+   "link_to": "Property Reservation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Occupancy Agreements",
+   "link_to": "Occupancy Agreement",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Property Sales",
+   "link_to": "Property Sale Contract",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Agent Commissions",
+   "link_to": "Real Estate Commission",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Control & Report",
+   "link_count": 0,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Housing Applications",
+   "link_to": "Housing Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Housing Allocations",
+   "link_to": "Property Allocation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Availability Register",
+   "link_to": "Availability Register",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Rent Roll",
+   "link_to": "Rent Roll",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Lease Expiry",
+   "link_to": "Lease Expiry",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "EstateFlow Settings",
+   "link_to": "EstateFlow Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Security Deposits",
+   "link_to": "Security Deposit Transaction",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-07-15 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "EstateFlow",
+ "name": "EstateFlow",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "color": "Purple",
+   "doc_view": "",
+   "label": "Command Center",
+   "link_to": "estateflow-command-center",
+   "type": "Page"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Properties",
+   "link_to": "Real Estate Property",
+   "type": "DocType"
+  },
+  {
+   "color": "Cyan",
+   "doc_view": "List",
+   "label": "Units, Rooms & Spaces",
+   "link_to": "Property Space",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "label": "Maintenance",
+   "link_to": "Maintenance Request",
+   "type": "DocType"
+  }
+ ],
+ "title": "EstateFlow"
+}

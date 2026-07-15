@@ -1,0 +1,471 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-07-15 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "reservation_section",
+  "naming_series",
+  "reservation_type",
+  "status",
+  "source",
+  "reservation_column",
+  "property",
+  "space",
+  "offer",
+  "agent",
+  "guest_section",
+  "customer",
+  "guest_name",
+  "email",
+  "mobile_no",
+  "guest_column",
+  "adults",
+  "children",
+  "guest_identity",
+  "vehicle_number",
+  "dates_section",
+  "arrival_date",
+  "departure_date",
+  "check_in_time",
+  "actual_check_in",
+  "dates_column",
+  "check_out_time",
+  "actual_check_out",
+  "hold_expires_on",
+  "number_of_nights",
+  "charges_tab",
+  "rates_section",
+  "currency",
+  "base_rate",
+  "discount_amount",
+  "rates_column",
+  "subtotal",
+  "grand_total",
+  "payment_status",
+  "sales_invoice",
+  "charges",
+  "notes_tab",
+  "special_requests",
+  "internal_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "reservation_section",
+   "fieldtype": "Section Break",
+   "label": "Reservation / Booking"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "RES-.YYYY.-.#####",
+   "default": "RES-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reservation_type",
+   "fieldtype": "Select",
+   "label": "Reservation Type",
+   "options": "Hotel / Lodge Stay\nLong-term Lease Hold\nProperty Sale Hold\nCo-working / Venue\nHousing Allocation Hold",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nTentative\nConfirmed\nChecked In\nChecked Out\nConverted\nCancelled\nNo Show\nExpired",
+   "default": "Draft",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "source",
+   "fieldtype": "Select",
+   "label": "Source",
+   "options": "Walk-in\nDirect\nWebsite\nPhone\nEmail\nAgent\nBooking Channel\nHousing Office\nOther",
+   "default": "Direct"
+  },
+  {
+   "fieldname": "reservation_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "label": "Property",
+   "options": "Real Estate Property",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "space",
+   "fieldtype": "Link",
+   "label": "Unit / Room / Space",
+   "options": "Property Space",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "offer",
+   "fieldtype": "Link",
+   "label": "Accepted Offer",
+   "options": "Property Offer"
+  },
+  {
+   "fieldname": "agent",
+   "fieldtype": "Link",
+   "label": "Agent / Booking Officer",
+   "options": "User"
+  },
+  {
+   "fieldname": "guest_section",
+   "fieldtype": "Section Break",
+   "label": "Customer / Guest"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "guest_name",
+   "fieldtype": "Data",
+   "label": "Guest / Applicant Name"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "label": "Mobile Number",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "guest_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "adults",
+   "fieldtype": "Int",
+   "label": "Adults",
+   "default": "1",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "children",
+   "fieldtype": "Int",
+   "label": "Children",
+   "default": "0",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "guest_identity",
+   "fieldtype": "Data",
+   "label": "Identity / Passport Number"
+  },
+  {
+   "fieldname": "vehicle_number",
+   "fieldtype": "Data",
+   "label": "Vehicle Number"
+  },
+  {
+   "fieldname": "dates_section",
+   "fieldtype": "Section Break",
+   "label": "Dates and Times"
+  },
+  {
+   "fieldname": "arrival_date",
+   "fieldtype": "Date",
+   "label": "Arrival / Hold Start",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "departure_date",
+   "fieldtype": "Date",
+   "label": "Departure / Hold End",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "check_in_time",
+   "fieldtype": "Time",
+   "label": "Check-in Time"
+  },
+  {
+   "fieldname": "actual_check_in",
+   "fieldtype": "Datetime",
+   "label": "Actual Check-in",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "dates_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "check_out_time",
+   "fieldtype": "Time",
+   "label": "Check-out Time"
+  },
+  {
+   "fieldname": "actual_check_out",
+   "fieldtype": "Datetime",
+   "label": "Actual Check-out",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "hold_expires_on",
+   "fieldtype": "Datetime",
+   "label": "Hold Expires On"
+  },
+  {
+   "fieldname": "number_of_nights",
+   "fieldtype": "Int",
+   "label": "Nights / Periods",
+   "read_only": 1
+  },
+  {
+   "fieldname": "charges_tab",
+   "fieldtype": "Tab Break",
+   "label": "Charges"
+  },
+  {
+   "fieldname": "rates_section",
+   "fieldtype": "Section Break",
+   "label": "Rates"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "base_rate",
+   "fieldtype": "Currency",
+   "label": "Base Rate",
+   "options": "currency",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "discount_amount",
+   "fieldtype": "Currency",
+   "label": "Discount",
+   "options": "currency",
+   "default": "0",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "rates_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "subtotal",
+   "fieldtype": "Currency",
+   "label": "Subtotal",
+   "options": "currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "grand_total",
+   "fieldtype": "Currency",
+   "label": "Grand Total",
+   "options": "currency",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "label": "Payment Status",
+   "options": "Unpaid\nPartly Paid\nPaid\nRefunded",
+   "default": "Unpaid",
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "label": "Sales Invoice",
+   "options": "Sales Invoice",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "charges",
+   "fieldtype": "Table",
+   "label": "Additional Charges",
+   "options": "Reservation Charge"
+  },
+  {
+   "fieldname": "notes_tab",
+   "fieldtype": "Tab Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "special_requests",
+   "fieldtype": "Text Editor",
+   "label": "Special Requests"
+  },
+  {
+   "fieldname": "internal_notes",
+   "fieldtype": "Small Text",
+   "label": "Internal Notes"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-15 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "EstateFlow",
+ "name": "Property Reservation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "EstateFlow Administrator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Property Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Portfolio Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Leasing Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Estate Agent",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Front Desk Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Housing Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Accounts Manager",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  },
+  {
+   "role": "Accounts User",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "naming_series:",
+ "title_field": "customer",
+ "show_title_field_in_link": 1,
+ "search_fields": "customer,guest_name,property,space",
+ "is_submittable": 1
+}

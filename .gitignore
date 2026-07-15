@@ -1,0 +1,8 @@
+*.py[cod]
+__pycache__/
+*.egg-info/
+.DS_Store
+.env
+.vscode/
+node_modules/
+dist/

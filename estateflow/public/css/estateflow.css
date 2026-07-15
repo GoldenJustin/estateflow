@@ -1,0 +1,128 @@
+/* EstateFlow — calm, high-contrast operational UI that stays native to Frappe. */
+:root {
+    --ef-ink: #172033;
+    --ef-muted: #667085;
+    --ef-line: #e6e9ef;
+    --ef-surface: #ffffff;
+    --ef-bg: #f6f7fb;
+    --ef-indigo: #4f46e5;
+    --ef-emerald: #0f9f75;
+    --ef-cyan: #0891b2;
+    --ef-rose: #e0526f;
+    --ef-amber: #d58a16;
+    --ef-radius: 16px;
+    --ef-shadow: 0 10px 30px rgba(28, 39, 64, .07);
+}
+
+.estateflow-command-center { color: var(--ef-ink); padding-bottom: 40px; }
+.estateflow-command-center button { font-family: inherit; }
+.ef-hero {
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 28px;
+    padding: 28px; margin: 0 0 20px; overflow: hidden; position: relative;
+    color: white; border-radius: 20px;
+    background: radial-gradient(circle at 82% -20%, rgba(255,255,255,.22), transparent 38%),
+                linear-gradient(125deg, #2936a8 0%, #4f46e5 55%, #7651d8 100%);
+    box-shadow: 0 16px 40px rgba(79, 70, 229, .20);
+}
+.ef-hero:after { content: ""; position: absolute; width: 210px; height: 210px; right: -65px; top: -85px; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; }
+.ef-hero h2 { color: white; font-size: clamp(22px, 3vw, 34px); line-height: 1.18; letter-spacing: -.03em; margin: 8px 0; max-width: 650px; }
+.ef-hero p { color: rgba(255,255,255,.78); max-width: 670px; margin: 0; font-size: 14px; }
+.ef-eyebrow { color: var(--ef-indigo); display: block; font-size: 10px; font-weight: 800; letter-spacing: .12em; }
+.ef-hero .ef-eyebrow { color: rgba(255,255,255,.66); }
+.ef-hero-actions { display: flex; gap: 8px; position: relative; z-index: 1; flex-wrap: wrap; justify-content: flex-end; }
+.ef-hero-actions .btn { border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.13); color: #fff; backdrop-filter: blur(8px); }
+.ef-hero-actions .btn:hover { background: #fff; color: var(--ef-indigo); }
+
+.ef-loading { margin: 10px 0; padding: 10px 14px; border-radius: 10px; color: var(--ef-muted); background: #fff; border: 1px solid var(--ef-line); }
+.ef-kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 14px; }
+.ef-kpi {
+    text-align: left; border: 1px solid var(--ef-line); background: var(--ef-surface); border-radius: var(--ef-radius);
+    padding: 17px 18px; min-height: 124px; position: relative; overflow: hidden; box-shadow: 0 2px 8px rgba(20,31,56,.025);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.ef-kpi:hover { transform: translateY(-2px); box-shadow: var(--ef-shadow); border-color: #d5d9e6; }
+.ef-kpi:after { content: ""; position: absolute; width: 64px; height: 64px; border-radius: 50%; right: -24px; top: -24px; background: currentColor; opacity: .08; }
+.ef-kpi-label { display: block; color: var(--ef-muted); font-size: 12px; font-weight: 650; margin-bottom: 13px; }
+.ef-kpi strong { display: block; color: var(--ef-ink); font-size: clamp(21px, 2.5vw, 29px); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.ef-kpi small { color: #98a2b3; font-size: 10px; }
+.ef-tone-indigo { color: var(--ef-indigo); } .ef-tone-emerald { color: var(--ef-emerald); }
+.ef-tone-cyan { color: var(--ef-cyan); } .ef-tone-rose { color: var(--ef-rose); }
+.ef-tone-amber { color: var(--ef-amber); } .ef-tone-violet { color: #7c3aed; } .ef-tone-slate { color: #667085; }
+
+.ef-main-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(300px, .7fr); gap: 14px; margin-bottom: 14px; }
+.ef-panel { background: #fff; border: 1px solid var(--ef-line); border-radius: var(--ef-radius); padding: 20px; box-shadow: 0 2px 8px rgba(20,31,56,.025); }
+.ef-panel > header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.ef-panel h3 { margin: 4px 0 0; font-size: 17px; letter-spacing: -.01em; }
+.ef-panel header a { font-size: 12px; color: var(--ef-indigo); cursor: pointer; }
+
+.ef-status-row { margin: 14px 0; }
+.ef-status-row > div:first-child { display: grid; grid-template-columns: 10px 1fr auto; align-items: center; gap: 8px; margin-bottom: 6px; }
+.ef-status-row b { font-size: 12px; font-weight: 600; }
+.ef-status-row span:last-child { font-size: 11px; color: var(--ef-muted); font-variant-numeric: tabular-nums; }
+.ef-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; background: #98a2b3; }
+.ef-status-track { height: 7px; background: #f0f2f6; border-radius: 8px; overflow: hidden; }
+.ef-status-track i { height: 100%; display: block; border-radius: 8px; background: #98a2b3; }
+.ef-available { background: var(--ef-emerald) !important; } .ef-occupied { background: var(--ef-indigo) !important; }
+.ef-reserved { background: var(--ef-amber) !important; } .ef-under-contract { background: #7c3aed !important; }
+.ef-sold { background: #667085 !important; } .ef-blocked { background: var(--ef-rose) !important; }
+.ef-owner-occupied { background: var(--ef-cyan) !important; }
+
+.ef-activity { display: grid; gap: 8px; }
+.ef-activity-row { border: 0; background: #f8f9fc; padding: 11px; border-radius: 11px; display: grid; grid-template-columns: 32px 1fr auto; gap: 9px; align-items: center; text-align: left; color: var(--ef-ink); }
+.ef-activity-row:hover { background: #f1f2fb; }
+.ef-activity-icon { width: 30px; height: 30px; border-radius: 9px; color: var(--ef-indigo); background: #eeedff; display: grid; place-items: center; }
+.ef-activity-row span:nth-child(2) { font-size: 12px; }
+.ef-activity-row strong { font-size: 18px; font-variant-numeric: tabular-nums; }
+
+.ef-upcoming { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.ef-upcoming-row { border: 1px solid var(--ef-line); background: white; border-radius: 12px; padding: 10px; display: grid; grid-template-columns: 58px 1fr 12px; align-items: center; gap: 11px; text-align: left; color: var(--ef-ink); }
+.ef-upcoming-row:hover { border-color: #bbb7f5; background: #fbfaff; }
+.ef-date-tile { border-radius: 10px; background: #f2f1ff; color: var(--ef-indigo); padding: 8px; text-align: center; overflow: hidden; }
+.ef-date-tile b, .ef-date-tile small { display: block; white-space: nowrap; }
+.ef-date-tile small { font-size: 8px; opacity: .75; }
+.ef-upcoming-copy { min-width: 0; }
+.ef-upcoming-copy small, .ef-upcoming-copy b, .ef-upcoming-copy em { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ef-upcoming-copy small { color: var(--ef-indigo); font-size: 9px; text-transform: uppercase; letter-spacing: .06em; }
+.ef-upcoming-copy b { font-size: 12px; margin: 2px 0; }
+.ef-upcoming-copy em { font-style: normal; color: var(--ef-muted); font-size: 10px; }
+.ef-generated { color: var(--ef-muted); font-size: 10px; }
+
+.ef-shortcuts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+.ef-shortcut { position: relative; border: 1px solid var(--ef-line); border-radius: 14px; background: #fff; padding: 16px; text-align: left; overflow: hidden; }
+.ef-shortcut:hover { border-color: #c9c6fa; box-shadow: var(--ef-shadow); }
+.ef-shortcut > span { position: absolute; right: 10px; top: 7px; color: #e9e7ff; font-size: 30px; font-weight: 800; }
+.ef-shortcut b, .ef-shortcut small { display: block; position: relative; }
+.ef-shortcut b { font-size: 12px; margin-bottom: 3px; }
+.ef-shortcut small { color: var(--ef-muted); font-size: 10px; }
+.ef-empty { grid-column: 1/-1; min-height: 100px; display: grid; place-items: center; align-content: center; color: var(--ef-muted); background: #fafbfc; border-radius: 12px; }
+.ef-empty span { color: var(--ef-emerald); font-size: 20px; }.ef-empty p { margin: 4px 0; font-size: 12px; }
+
+.ef-create-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.ef-create-action { display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: center; border: 1px solid var(--ef-line); border-radius: 13px; padding: 13px; background: white; text-align: left; }
+.ef-create-action:hover { border-color: #b9b5f7; background: #fafaff; }
+.ef-create-action b, .ef-create-action small { display: block; } .ef-create-action b { font-size: 13px; }.ef-create-action small { color: var(--ef-muted); font-size: 10px; }
+.ef-create-icon { width: 40px; height: 40px; display: grid; place-items: center; color: var(--ef-indigo); background: #efefff; border-radius: 11px; }
+.ef-setup-intro { display: flex; gap: 14px; padding: 16px; margin-bottom: 12px; border-radius: 14px; color: white; background: linear-gradient(125deg, #303cad, #6d4dd3); }
+.ef-setup-intro > span { font-size: 30px; }.ef-setup-intro h3 { color: #fff; margin: 0 0 4px; }.ef-setup-intro p { color: rgba(255,255,255,.76); margin: 0; }
+
+/* Form affordances shared by all EstateFlow transactions. */
+[data-doctype^="Property"] .form-dashboard-section,
+[data-doctype="Occupancy Agreement"] .form-dashboard-section { border-radius: 12px; }
+.ef-status-guide { padding: 8px 12px; border-left: 3px solid var(--ef-indigo); background: #f7f7ff; color: var(--ef-muted); border-radius: 6px; font-size: 11px; }
+
+@media (max-width: 1100px) {
+    .ef-kpi-grid, .ef-shortcuts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+    .estateflow-command-center { padding: 0 2px 24px; }
+    .ef-hero { align-items: flex-start; flex-direction: column; padding: 22px; border-radius: 15px; }
+    .ef-hero-actions { justify-content: flex-start; }
+    .ef-kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ef-main-grid, .ef-upcoming, .ef-shortcuts { grid-template-columns: 1fr; }
+    .ef-kpi { min-height: 105px; padding: 14px; }
+    .ef-panel { padding: 15px; }
+    .ef-create-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 430px) {
+    .ef-kpi-grid { grid-template-columns: 1fr; }
+}

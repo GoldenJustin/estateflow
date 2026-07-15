@@ -1,0 +1,219 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-07-15 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "meter_section",
+  "meter_number",
+  "meter_type",
+  "status",
+  "meter_column",
+  "property",
+  "space",
+  "is_shared",
+  "uom",
+  "billing_section",
+  "item_code",
+  "rate_per_unit",
+  "currency",
+  "billing_column",
+  "last_reading",
+  "last_reading_date",
+  "supplier"
+ ],
+ "fields": [
+  {
+   "fieldname": "meter_section",
+   "fieldtype": "Section Break",
+   "label": "Meter"
+  },
+  {
+   "fieldname": "meter_number",
+   "fieldtype": "Data",
+   "label": "Meter Number",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "meter_type",
+   "fieldtype": "Select",
+   "label": "Meter Type",
+   "options": "Electricity\nWater\nGas\nSolar\nGenerator\nOther",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nInactive\nFaulty\nRemoved",
+   "default": "Active",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "meter_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Link",
+   "label": "Property",
+   "options": "Real Estate Property",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "space",
+   "fieldtype": "Link",
+   "label": "Unit / Room / Space",
+   "options": "Property Space"
+  },
+  {
+   "fieldname": "is_shared",
+   "fieldtype": "Check",
+   "label": "Shared Meter",
+   "default": "0"
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "label": "Reading UOM",
+   "options": "UOM",
+   "reqd": 1
+  },
+  {
+   "fieldname": "billing_section",
+   "fieldtype": "Section Break",
+   "label": "Billing"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Utility Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "rate_per_unit",
+   "fieldtype": "Currency",
+   "label": "Rate Per Unit",
+   "options": "currency",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "billing_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "last_reading",
+   "fieldtype": "Float",
+   "label": "Last Reading",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_reading_date",
+   "fieldtype": "Date",
+   "label": "Last Reading Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Utility Supplier",
+   "options": "Supplier"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-15 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "EstateFlow",
+ "name": "Utility Meter",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "EstateFlow Administrator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Property Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Portfolio Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Facilities Officer",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "write": 1,
+   "create": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "field:meter_number",
+ "title_field": "meter_number",
+ "show_title_field_in_link": 1,
+ "search_fields": "meter_number,property,space"
+}
