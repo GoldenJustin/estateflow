@@ -25,7 +25,7 @@ docker build \
   --build-arg=FRAPPE_PATH=https://github.com/frappe/frappe \
   --build-arg=FRAPPE_BRANCH=version-16 \
   --secret=id=apps_json,src=apps.json \
-  --tag=golden-erpnext:16-estateflow-0.1.5 \
+  --tag=golden-erpnext:16-estateflow-0.2.0 \
   --file=images/layered/Containerfile \
   .
 ```
@@ -36,7 +36,7 @@ Add to the environment file used by Docker Compose:
 
 ```text
 CUSTOM_IMAGE=golden-erpnext
-CUSTOM_TAG=16-estateflow-0.1.5
+CUSTOM_TAG=16-estateflow-0.2.0
 PULL_POLICY=never
 ```
 
@@ -65,8 +65,8 @@ Verify permanent CSS from the host:
 
 ```bash
 BASE_URL=http://127.0.0.1:8080
-curl -sSI "$BASE_URL/assets/estateflow/css/estateflow.css?v=0.1.5" | grep -Ei 'HTTP/|content-type'
-curl -sSI "$BASE_URL/assets/estateflow/css/estateflow-guide.css?v=0.1.5" | grep -Ei 'HTTP/|content-type'
+curl -sSI "$BASE_URL/assets/estateflow/css/estateflow.css?v=0.2.0" | grep -Ei 'HTTP/|content-type'
+curl -sSI "$BASE_URL/assets/estateflow/css/estateflow-guide.css?v=0.2.0" | grep -Ei 'HTTP/|content-type'
 ```
 
 Both responses must be `200` and `text/css`. Restarting any service will remain safe because the custom image contains EstateFlow and all assets.

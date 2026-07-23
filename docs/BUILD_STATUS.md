@@ -1,6 +1,6 @@
 # EstateFlow build status
 
-Updated: 2026-07-15 · Version: 0.1.5
+Updated: 2026-07-23 · Version: 0.2.0
 
 ## Delivered in this milestone
 
@@ -13,12 +13,17 @@ Updated: 2026-07-15 · Version: 0.1.5
 - [x] Universal portfolio/property/space hierarchy
 - [x] Occupancy and housekeeping state model
 - [x] Property listings, enquiries, viewings and offers
+- [x] Public `/properties` marketplace with image, price, detail and contact pages
 - [x] Hotel/lodge and generic reservation flow
 - [x] Date/capacity validation and cross-document availability engine
 - [x] Confirm, check-in, invoice and check-out actions
-- [x] Long-term occupancy agreement and recurring charges
+- [x] Long-term occupancy agreement with Pending Activation, Active and automatic Expired lifecycle
+- [x] On Activation, On Period Start and Days Before Period Start invoice triggers
+- [x] Recurring charges plus one-time agreement payment milestones
+- [x] Contract Billing Event ledger linked to manual/automatic invoice and payment status
 - [x] Security-deposit receipt/refund/application/adjustment Journal Entries and balance
-- [x] Scheduled agreement invoicing with duplicate protection
+- [x] Scheduled agreement invoicing with catch-up and duplicate protection
+- [x] Configurable email templates, reminder thresholds and deduplicated notification log
 - [x] Property sale contract and installment billing
 - [x] Agent commission payable flow
 - [x] Housing application and property allocation
@@ -32,7 +37,9 @@ Updated: 2026-07-15 · Version: 0.1.5
 - [x] In-app operating manual with live setup checklist and ten business playbooks
 - [x] Guided setup result summary explaining every change and next step
 - [x] Permanent Frappe Docker custom-image manifest and deployment guide
-- [x] Availability Register, Rent Roll and Lease Expiry reports
+- [x] Eleven operational, billing, portfolio, hotel, SLA, sales, housing and UAT reports
+- [x] In-app EstateFlow Test Center, UAT Run/Result and client sign-off
+- [x] Comprehensive client demo/UAT manual and Excel testing workbook
 - [x] Customer self-service summary portal
 - [x] Daily expiry and billing schedulers
 - [x] README product/technical presentation

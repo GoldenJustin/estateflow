@@ -39,6 +39,9 @@ def release_space_if_unused(space):
     active_agreement = frappe.db.exists(
         "Occupancy Agreement", {"space": space, "docstatus": 1, "status": ["in", ["Active", "Notice Given"]]}
     )
+    pending_agreement = frappe.db.exists(
+        "Occupancy Agreement", {"space": space, "docstatus": 1, "status": "Pending Activation"}
+    )
     checked_in = frappe.db.exists(
         "Property Reservation", {"space": space, "docstatus": 1, "status": "Checked In"}
     )
@@ -55,6 +58,8 @@ def release_space_if_unused(space):
     elif checked_in:
         customer = frappe.db.get_value("Property Reservation", checked_in, "customer")
         set_space_state(space, "Occupied", customer, "")
+    elif pending_agreement:
+        set_space_state(space, "Reserved", "", "")
     else:
         set_space_state(space, "Available", "", "")
 

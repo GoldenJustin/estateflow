@@ -38,7 +38,8 @@ def _require_item(item_code, purpose):
 
 
 def _apply_estateflow_dimensions(invoice, *, property_name=None, space=None, agreement=None,
-                                  reservation=None, sale_contract=None, period_start=None, period_end=None):
+                                  reservation=None, sale_contract=None, period_start=None, period_end=None,
+                                  billing_source=None, milestone_row=None):
     values = {
         "estateflow_property": property_name,
         "estateflow_space": space,
@@ -47,6 +48,8 @@ def _apply_estateflow_dimensions(invoice, *, property_name=None, space=None, agr
         "estateflow_sale_contract": sale_contract,
         "estateflow_billing_period_start": period_start,
         "estateflow_billing_period_end": period_end,
+        "estateflow_billing_source": billing_source,
+        "estateflow_milestone_row": milestone_row,
     }
     for fieldname, value in values.items():
         if value is not None and invoice.meta.has_field(fieldname):
@@ -58,14 +61,18 @@ def _insert_invoice(invoice, submit=None):
     invoice.insert()
     if _should_submit(submit):
         invoice.submit()
+    from estateflow.api.billing_tracking import sync_invoice_billing_event
+    sync_invoice_billing_event(invoice)
     return invoice
 
 
 def generate_agreement_invoice(agreement_name, billing_date=None, submit=None):
     agreement = frappe.get_doc("Occupancy Agreement", agreement_name)
     agreement.check_permission("read")
-    if agreement.docstatus != 1 or agreement.status not in ("Active", "Notice Given"):
-        frappe.throw(_("Only an active submitted agreement can be billed."))
+    if agreement.docstatus != 1 or agreement.status not in ("Pending Activation", "Active", "Notice Given"):
+        frappe.throw(_("Only a current submitted agreement can be billed."))
+    if not agreement.charges:
+        frappe.throw(_("This agreement has no recurring charges to invoice."))
 
     period_start = getdate(billing_date or agreement.next_invoice_date or agreement.start_date)
     if period_start > getdate(agreement.end_date):
@@ -83,15 +90,18 @@ def generate_agreement_invoice(agreement_name, billing_date=None, submit=None):
         "name",
     )
     if existing:
-        return frappe.get_doc("Sales Invoice", existing)
+        invoice = frappe.get_doc("Sales Invoice", existing)
+        from estateflow.api.billing_tracking import sync_invoice_billing_event
+        sync_invoice_billing_event(invoice)
+        return invoice
 
     defaults = get_property_defaults(agreement.property)
     invoice = frappe.new_doc("Sales Invoice")
     invoice.customer = agreement.customer
     invoice.company = agreement.company
     invoice.currency = agreement.currency
-    invoice.posting_date = period_start
-    invoice.due_date = add_days(period_start, agreement.invoice_due_days or 0)
+    invoice.posting_date = min(getdate(nowdate()), period_start)
+    invoice.due_date = add_days(invoice.posting_date, agreement.invoice_due_days or 0)
     _apply_estateflow_dimensions(
         invoice,
         property_name=agreement.property,
@@ -99,6 +109,7 @@ def generate_agreement_invoice(agreement_name, billing_date=None, submit=None):
         agreement=agreement.name,
         period_start=period_start,
         period_end=period_end,
+        billing_source="Recurring Charge",
     )
 
     for charge in agreement.charges:
@@ -116,8 +127,83 @@ def generate_agreement_invoice(agreement_name, billing_date=None, submit=None):
     _insert_invoice(invoice, submit)
 
     next_invoice_date = next_date if next_date and next_date <= getdate(agreement.end_date) else None
-    agreement.db_set("next_invoice_date", next_invoice_date)
+    agreement.db_set({"next_invoice_date": next_invoice_date, "last_invoice_date": invoice.posting_date})
     return invoice
+
+
+def _agreement_trigger_date(agreement):
+    if not agreement.next_invoice_date:
+        return None
+    if agreement.billing_start_policy == "Days Before Period Start":
+        return getdate(add_days(agreement.next_invoice_date, -(agreement.invoice_lead_days or 0)))
+    # On Activation affects the first invoice; later periods trigger on period start.
+    if agreement.billing_start_policy == "On Activation" and not agreement.last_invoice_date:
+        return getdate(agreement.start_date) if agreement.status == "Pending Activation" else getdate(nowdate())
+    return getdate(agreement.next_invoice_date)
+
+
+def generate_agreement_milestone_invoices(agreement_name, as_of_date=None, submit=None):
+    agreement = frappe.get_doc("Occupancy Agreement", agreement_name)
+    if agreement.docstatus != 1 or agreement.status not in ("Pending Activation", "Active", "Notice Given"):
+        frappe.throw(_("Only a current submitted agreement can be billed."))
+    cutoff = getdate(as_of_date or nowdate())
+    if agreement.billing_start_policy == "Days Before Period Start":
+        cutoff = add_days(cutoff, agreement.invoice_lead_days or 0)
+    defaults = get_property_defaults(agreement.property)
+    created = []
+    for row in agreement.payment_milestones:
+        if row.status != "Pending" or getdate(row.due_date) > getdate(cutoff):
+            continue
+        if row.sales_invoice and frappe.db.exists("Sales Invoice", row.sales_invoice):
+            created.append(row.sales_invoice)
+            continue
+        existing = frappe.db.get_value(
+            "Sales Invoice",
+            {"estateflow_agreement": agreement.name, "estateflow_milestone_row": row.name, "docstatus": ["<", 2]},
+            "name",
+        )
+        if existing:
+            frappe.db.set_value("Agreement Milestone", row.name, {"sales_invoice": existing, "status": "Invoiced"})
+            created.append(existing)
+            continue
+        invoice = frappe.new_doc("Sales Invoice")
+        invoice.customer = agreement.customer
+        invoice.company = agreement.company
+        invoice.currency = agreement.currency
+        invoice.posting_date = min(getdate(nowdate()), getdate(row.due_date))
+        invoice.due_date = row.due_date
+        _apply_estateflow_dimensions(
+            invoice, property_name=agreement.property, space=agreement.space,
+            agreement=agreement.name, period_start=row.due_date, period_end=row.due_date,
+            billing_source="Agreement Milestone", milestone_row=row.name,
+        )
+        invoice.append("items", {
+            "item_code": _require_item(row.item_code, row.milestone),
+            "description": row.description or row.milestone,
+            "qty": 1, "rate": row.amount,
+            "income_account": defaults.income_account, "cost_center": defaults.cost_center,
+        })
+        _insert_invoice(invoice, submit)
+        frappe.db.set_value(
+            "Agreement Milestone", row.name,
+            {"sales_invoice": invoice.name, "status": "Invoiced", "outstanding_amount": invoice.outstanding_amount},
+        )
+        created.append(invoice.name)
+    return created
+
+
+def generate_due_agreement_invoices_for_contract(agreement_name, as_of_date=None, submit=None):
+    cutoff = getdate(as_of_date or nowdate())
+    created = []
+    for _ in range(24):
+        agreement = frappe.get_doc("Occupancy Agreement", agreement_name)
+        trigger = _agreement_trigger_date(agreement)
+        if not agreement.auto_generate_invoices or not trigger or trigger > cutoff:
+            break
+        invoice = generate_agreement_invoice(agreement.name, agreement.next_invoice_date, submit=submit)
+        created.append(invoice.name)
+    created.extend(generate_agreement_milestone_invoices(agreement_name, cutoff, submit=submit))
+    return list(dict.fromkeys(created))
 
 
 def create_reservation_invoice(reservation_name, submit=None):
@@ -143,6 +229,7 @@ def create_reservation_invoice(reservation_name, submit=None):
         reservation=reservation.name,
         period_start=reservation.arrival_date,
         period_end=reservation.departure_date,
+        billing_source="Reservation / Stay",
     )
 
     space_item = frappe.db.get_value("Property Space", reservation.space, "item_code")
@@ -218,6 +305,8 @@ def generate_sale_installment_invoices(contract_name, as_of_date=None, submit=No
             property_name=contract.property,
             space=contract.space,
             sale_contract=contract.name,
+            billing_source="Property Sale Milestone",
+            milestone_row=row.name,
         )
         invoice.append(
             "items",
@@ -253,7 +342,10 @@ def create_utility_invoice(reading_name, submit=None):
     invoice.currency = reading.currency or meter.currency
     invoice.posting_date = reading.reading_date
     invoice.due_date = add_days(reading.reading_date, get_estateflow_settings().default_receivable_days or 0)
-    _apply_estateflow_dimensions(invoice, property_name=meter.property, space=meter.space)
+    _apply_estateflow_dimensions(
+        invoice, property_name=meter.property, space=meter.space,
+        billing_source="Utility Reading",
+    )
     invoice.append(
         "items",
         {
@@ -287,10 +379,16 @@ def _refresh_installment_payment_statuses():
             status = "Partly Paid"
         else:
             status = "Invoiced"
-        frappe.db.set_value("Sale Installment", row.installment, "status", status)
+        frappe.db.set_value(
+            "Sale Installment", row.installment,
+            {"status": status, "paid_amount": flt(row.grand_total) - flt(row.outstanding_amount), "outstanding_amount": row.outstanding_amount},
+        )
 
 
+@frappe.whitelist()
 def run_daily_billing():
+    if frappe.request:
+        frappe.only_for(("System Manager", "EstateFlow Administrator"))
     settings = get_estateflow_settings()
     today = getdate(nowdate())
 
@@ -299,24 +397,17 @@ def run_daily_billing():
             "Occupancy Agreement",
             filters={
                 "docstatus": 1,
-                "status": ["in", ["Active", "Notice Given"]],
-                "next_invoice_date": ["<=", today],
+                "status": ["in", ["Pending Activation", "Active", "Notice Given"]],
                 "end_date": [">=", today],
             },
             pluck="name",
-            limit_page_length=500,
+            limit_page_length=1000,
         )
         for name in agreements:
-            # Catch up safely after downtime, while guarding against malformed data.
-            for _ in range(24):
-                agreement = frappe.get_doc("Occupancy Agreement", name)
-                if not agreement.next_invoice_date or getdate(agreement.next_invoice_date) > today:
-                    break
-                try:
-                    generate_agreement_invoice(name, agreement.next_invoice_date)
-                except Exception:
-                    frappe.log_error(frappe.get_traceback(), f"EstateFlow agreement billing: {name}")
-                    break
+            try:
+                generate_due_agreement_invoices_for_contract(name, today)
+            except Exception:
+                frappe.log_error(frappe.get_traceback(), f"EstateFlow agreement billing: {name}")
 
     if settings.invoice_sale_installments_daily:
         contracts = frappe.get_all(

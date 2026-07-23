@@ -46,6 +46,9 @@ class PropertyReservation(Document):
             set_space_state(self.space, "Occupied", self.customer, "")
         else:
             set_space_state(self.space, "Reserved", "", "")
+        if self.status == "Confirmed":
+            from estateflow.api.notifications import send_reservation_confirmation
+            send_reservation_confirmation(self)
 
     def on_cancel(self):
         self.db_set("status", "Cancelled")

@@ -8,7 +8,7 @@ from frappe.utils import getdate
 
 
 BLOCKING_RESERVATION_STATUSES = ("Tentative", "Confirmed", "Checked In")
-BLOCKING_AGREEMENT_STATUSES = ("Active", "Notice Given")
+BLOCKING_AGREEMENT_STATUSES = ("Pending Activation", "Active", "Notice Given")
 
 
 def _normalise_dates(start_date, end_date):
@@ -61,7 +61,7 @@ def get_conflicts(space, start_date, end_date, exclude_doctype=None, exclude_nam
         from `tabOccupancy Agreement`
         where space = %(space)s
           and docstatus = 1
-          and status in ('Active', 'Notice Given')
+          and status in ('Pending Activation', 'Active', 'Notice Given')
           and start_date < %(end)s
           and end_date > %(start)s
     """

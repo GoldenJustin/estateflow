@@ -25,6 +25,11 @@
   "billing_in_advance",
   "invoice_due_days",
   "next_invoice_date",
+  "auto_generate_invoices",
+  "billing_start_policy",
+  "invoice_lead_days",
+  "last_invoice_date",
+  "activation_date",
   "charges_tab",
   "financial_section",
   "currency",
@@ -39,6 +44,9 @@
   "sales_partner",
   "commission_rate",
   "charges",
+  "milestones_section",
+  "payment_milestones",
+  "milestone_help",
   "terms_tab",
   "terms_template",
   "terms",
@@ -71,7 +79,7 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Draft\nActive\nNotice Given\nExpired\nTerminated\nRenewed",
+   "options": "Draft\nPending Activation\nActive\nNotice Given\nExpired\nTerminated\nRenewed",
    "default": "Draft",
    "in_list_view": 1,
    "in_standard_filter": 1,
@@ -261,8 +269,7 @@
    "fieldname": "charges",
    "fieldtype": "Table",
    "label": "Recurring Charges",
-   "options": "Agreement Charge",
-   "reqd": 1
+   "options": "Agreement Charge"
   },
   {
    "fieldname": "terms_tab",
@@ -292,6 +299,59 @@
    "options": "currency",
    "read_only": 1,
    "allow_on_submit": 1
+  },
+  {
+   "fieldname": "auto_generate_invoices",
+   "fieldtype": "Check",
+   "label": "Automatically Generate Invoices",
+   "default": "1"
+  },
+  {
+   "fieldname": "billing_start_policy",
+   "fieldtype": "Select",
+   "label": "Invoice Trigger",
+   "options": "On Activation\nOn Period Start\nDays Before Period Start",
+   "default": "On Activation"
+  },
+  {
+   "fieldname": "invoice_lead_days",
+   "fieldtype": "Int",
+   "label": "Invoice Lead Days",
+   "default": "0",
+   "non_negative": 1,
+   "depends_on": "eval:doc.billing_start_policy=='Days Before Period Start'"
+  },
+  {
+   "fieldname": "last_invoice_date",
+   "fieldtype": "Date",
+   "label": "Last Invoice Date",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "activation_date",
+   "fieldtype": "Datetime",
+   "label": "Activated On",
+   "read_only": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "milestones_section",
+   "fieldtype": "Section Break",
+   "label": "Payment Terms and Milestones"
+  },
+  {
+   "fieldname": "payment_milestones",
+   "fieldtype": "Table",
+   "label": "One-time Payment Milestones",
+   "options": "Agreement Milestone"
+  },
+  {
+   "fieldname": "milestone_help",
+   "fieldtype": "Small Text",
+   "label": "Milestone Guidance",
+   "read_only": 1,
+   "default": "Use milestones for deposits, fit-out contributions, key money or other dated one-time obligations. Recurring rent remains in Recurring Charges."
   }
  ],
  "index_web_pages_for_search": 0,

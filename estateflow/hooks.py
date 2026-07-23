@@ -22,8 +22,25 @@ scheduler_events = {
     "daily": [
         "estateflow.api.billing.run_daily_billing",
         "estateflow.api.operations.run_daily_operations",
+        "estateflow.api.notifications.run_daily_notifications",
     ]
 }
+
+doc_events = {
+    "Sales Invoice": {
+        "on_submit": "estateflow.api.billing_tracking.on_sales_invoice_submit",
+        "on_update_after_submit": "estateflow.api.billing_tracking.on_sales_invoice_update",
+        "on_cancel": "estateflow.api.billing_tracking.on_sales_invoice_cancel",
+    },
+    "Payment Entry": {
+        "on_submit": "estateflow.api.billing_tracking.on_payment_entry_submit",
+        "on_cancel": "estateflow.api.billing_tracking.on_payment_entry_cancel",
+    },
+}
+
+website_route_rules = [
+    {"from_route": "/properties/<name>", "to_route": "property-listing"}
+]
 
 standard_portal_menu_items = [
     {"title": "My Estate", "route": "/my-estate", "role": "EstateFlow Portal User"}

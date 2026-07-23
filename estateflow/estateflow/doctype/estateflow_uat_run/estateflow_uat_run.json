@@ -1,0 +1,256 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-07-23 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "run_section",
+  "naming_series",
+  "title",
+  "business_case",
+  "status",
+  "run_column",
+  "company",
+  "client_name",
+  "environment",
+  "app_version",
+  "test_date",
+  "summary_section",
+  "total_tests",
+  "passed_tests",
+  "failed_tests",
+  "blocked_tests",
+  "completion_percentage",
+  "results",
+  "signoff_section",
+  "overall_notes",
+  "client_signoff_name",
+  "client_signoff_date",
+  "signed_document"
+ ],
+ "fields": [
+  {
+   "fieldname": "run_section",
+   "fieldtype": "Section Break",
+   "label": "User Acceptance Test Run"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "UAT-.YYYY.-.#####",
+   "default": "UAT-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Test Run Title",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "business_case",
+   "fieldtype": "Select",
+   "label": "Business Case",
+   "options": "Individual Landlord\nHotel / Lodge\nProperty Management\nAgency / Brokerage\nNational / Social Housing\nDeveloper Sales\nCommercial / Retail / Warehouse\nHOA / Community\nInvestment Portfolio / REIT\nFacilities and Maintenance\nComplete Suite",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Planned\nIn Progress\nPassed\nFailed\nSigned Off",
+   "default": "Planned",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "run_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "client_name",
+   "fieldtype": "Data",
+   "label": "Client / Organization"
+  },
+  {
+   "fieldname": "environment",
+   "fieldtype": "Select",
+   "label": "Environment",
+   "options": "Development\nTesting\nStaging\nProduction Pilot",
+   "default": "Testing"
+  },
+  {
+   "fieldname": "app_version",
+   "fieldtype": "Data",
+   "label": "EstateFlow Version",
+   "read_only": 1
+  },
+  {
+   "fieldname": "test_date",
+   "fieldtype": "Date",
+   "label": "Test Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "summary_section",
+   "fieldtype": "Section Break",
+   "label": "Summary"
+  },
+  {
+   "fieldname": "total_tests",
+   "fieldtype": "Int",
+   "label": "Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "passed_tests",
+   "fieldtype": "Int",
+   "label": "Passed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "failed_tests",
+   "fieldtype": "Int",
+   "label": "Failed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "blocked_tests",
+   "fieldtype": "Int",
+   "label": "Blocked",
+   "read_only": 1
+  },
+  {
+   "fieldname": "completion_percentage",
+   "fieldtype": "Percent",
+   "label": "Completion %",
+   "read_only": 1
+  },
+  {
+   "fieldname": "results",
+   "fieldtype": "Table",
+   "label": "Test Cases",
+   "options": "EstateFlow UAT Result",
+   "reqd": 1
+  },
+  {
+   "fieldname": "signoff_section",
+   "fieldtype": "Section Break",
+   "label": "Sign-off"
+  },
+  {
+   "fieldname": "overall_notes",
+   "fieldtype": "Text Editor",
+   "label": "Overall Notes"
+  },
+  {
+   "fieldname": "client_signoff_name",
+   "fieldtype": "Data",
+   "label": "Client Sign-off Name",
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "client_signoff_date",
+   "fieldtype": "Date",
+   "label": "Client Sign-off Date",
+   "allow_on_submit": 1
+  },
+  {
+   "fieldname": "signed_document",
+   "fieldtype": "Attach",
+   "label": "Signed UAT Document",
+   "allow_on_submit": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-23 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "EstateFlow",
+ "name": "EstateFlow UAT Run",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "EstateFlow Administrator",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1,
+   "delete": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Property Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Portfolio Manager",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  },
+  {
+   "role": "Property Manager",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "write": 1,
+   "create": 1,
+   "submit": 1,
+   "cancel": 1,
+   "amend": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "naming_series:",
+ "is_submittable": 1,
+ "title_field": "title",
+ "show_title_field_in_link": 1
+}

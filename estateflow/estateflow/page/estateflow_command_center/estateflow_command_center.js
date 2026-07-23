@@ -25,11 +25,19 @@ class EstateFlowCommandCenter {
     make_filters() {
         this.company = this.page.add_field({
             label: __("Company"), fieldtype: "Link", options: "Company", fieldname: "company",
+            change: () => { this.portfolio.set_value(""); this.property.set_value(""); this.refresh(); },
+        });
+        this.portfolio = this.page.add_field({
+            label: __("Portfolio"), fieldtype: "Link", options: "Property Portfolio", fieldname: "portfolio",
+            get_query: () => ({ filters: this.company.get_value() ? { company: this.company.get_value() } : {} }),
             change: () => { this.property.set_value(""); this.refresh(); },
         });
         this.property = this.page.add_field({
             label: __("Property"), fieldtype: "Link", options: "Real Estate Property", fieldname: "property",
-            get_query: () => ({ filters: this.company.get_value() ? { company: this.company.get_value() } : {} }),
+            get_query: () => ({ filters: Object.assign(
+                this.company.get_value() ? { company: this.company.get_value() } : {},
+                this.portfolio.get_value() ? { portfolio: this.portfolio.get_value() } : {}
+            ) }),
             change: () => this.refresh(),
         });
         this.from_date = this.page.add_field({
@@ -43,6 +51,8 @@ class EstateFlowCommandCenter {
         this.page.set_primary_action(__("New"), () => this.show_create_menu(), "add");
         this.page.add_menu_item(__("Run Setup"), () => this.show_setup_dialog());
         this.page.add_menu_item(__("Guide & Business Playbooks"), () => frappe.set_route("estateflow-guide"));
+        this.page.add_menu_item(__("Client Test Center"), () => frappe.set_route("estateflow-test-center"));
+        this.page.add_menu_item(__("Contract Billing Tracker"), () => frappe.set_route("query-report", "Contract Billing Tracker"));
         this.page.add_menu_item(__("Refresh"), () => this.refresh(), true);
     }
 
@@ -56,6 +66,8 @@ class EstateFlowCommandCenter {
                 </div>
                 <div class="ef-hero-actions">
                     <button class="btn btn-light ef-route" data-route="estateflow-guide">${__("Guide & setup")}</button>
+                    <button class="btn btn-light ef-route" data-route="estateflow-test-center">${__("Test Center")}</button>
+                    <a class="btn btn-light" href="/properties" target="_blank">${__("Public listings")}</a>
                     <button class="btn btn-light ef-quick" data-doctype="Property Reservation">${__("New booking")}</button>
                     <button class="btn btn-light ef-quick" data-doctype="Occupancy Agreement">${__("New lease")}</button>
                     <button class="btn btn-light ef-quick" data-doctype="Maintenance Request">${__("Report issue")}</button>
@@ -106,6 +118,7 @@ class EstateFlowCommandCenter {
     route_defaults() {
         const values = {};
         if (this.company.get_value()) values.company = this.company.get_value();
+        if (this.portfolio.get_value()) values.portfolio = this.portfolio.get_value();
         if (this.property.get_value()) values.property = this.property.get_value();
         return values;
     }
@@ -219,8 +232,8 @@ class EstateFlowCommandCenter {
             const response = await frappe.call({
                 method: "estateflow.api.dashboard.get_command_center",
                 args: {
-                    company: this.company?.get_value(), property: this.property?.get_value(),
-                    from_date: this.from_date?.get_value(), to_date: this.to_date?.get_value(),
+                    company: this.company?.get_value(), portfolio: this.portfolio?.get_value(),
+                    property: this.property?.get_value(), from_date: this.from_date?.get_value(), to_date: this.to_date?.get_value(),
                 },
             });
             this.render(response.message || {});

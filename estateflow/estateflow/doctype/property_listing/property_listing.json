@@ -10,6 +10,8 @@
   "listing_title",
   "listing_type",
   "status",
+  "publish_on_website",
+  "website_route",
   "listing_column",
   "property",
   "space",
@@ -27,7 +29,11 @@
   "marketing_section",
   "channel",
   "public_description",
-  "featured_image"
+  "featured_image",
+  "website_section",
+  "public_contact_name",
+  "public_contact_email",
+  "public_contact_phone"
  ],
  "fields": [
   {
@@ -172,6 +178,41 @@
    "fieldname": "featured_image",
    "fieldtype": "Attach Image",
    "label": "Featured Image"
+  },
+  {
+   "fieldname": "publish_on_website",
+   "fieldtype": "Check",
+   "label": "Publish on Public Property Portal",
+   "default": "1",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "website_route",
+   "fieldtype": "Data",
+   "label": "Public Route",
+   "read_only": 1
+  },
+  {
+   "fieldname": "website_section",
+   "fieldtype": "Section Break",
+   "label": "Website Contact"
+  },
+  {
+   "fieldname": "public_contact_name",
+   "fieldtype": "Data",
+   "label": "Public Contact Name"
+  },
+  {
+   "fieldname": "public_contact_email",
+   "fieldtype": "Data",
+   "label": "Public Contact Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "public_contact_phone",
+   "fieldtype": "Data",
+   "label": "Public Contact Phone",
+   "options": "Phone"
   }
  ],
  "index_web_pages_for_search": 0,

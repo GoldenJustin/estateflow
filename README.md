@@ -2,7 +2,7 @@
 
 **One seamless operating system for houses, rentals, hotels, lodges, property agents, developers, national housing, facilities and real-estate portfolios.**
 
-> Compatibility target: ERPNext/Frappe 15 and 16 · License: MIT · Current build: `0.1.5`
+> Compatibility target: ERPNext/Frappe 15 and 16 · License: MIT · Current build: `0.2.0`
 
 EstateFlow is an upgrade-safe Frappe application. It uses ERPNext Accounts, Selling, Buying, Stock, Assets, CRM and Projects instead of building a disconnected property ledger. A one-house landlord can start with a property and a tenant; a housing authority or hotel group can use portfolios, hundreds of properties, thousands of spaces, approvals and role separation.
 
@@ -77,10 +77,25 @@ flowchart LR
 - Accountant-controlled Journal Entries between bank, liability, receivable and adjustment accounts
 - Live deposit balance on the occupancy agreement
 - Double-occupancy prevention with clear conflict messages
-- Submission sets the space to occupied and links the current customer/agreement
-- Daily scheduler generates missing due periods safely and prevents duplicate invoices
-- Agreement invoice action for authorized users
-- Rent Roll and Lease Expiry reports
+- Future contracts submit as **Pending Activation** and reserve inventory
+- Contracts activate automatically on their start date and expire automatically after end date
+- Invoice trigger per agreement: **On Activation**, **On Period Start**, or **Days Before Period Start**
+- First invoice generation on activation and catch-up billing after scheduler downtime
+- Dated one-time payment milestones alongside recurring charges
+- Duplicate-safe recurring and milestone Sales Invoices
+- Contract Billing Event ledger tracking billed, paid, outstanding, overdue and cancelled amounts
+- Manual Sales Invoices join the same tracker when EstateFlow references are selected
+- Payment Entry updates billing and milestone status
+- Rent Roll, Lease Expiry and Contract Billing Tracker reports
+
+### Contract emails and reminders
+
+- Configurable activation, expiry, invoice, payment receipt, overdue and reservation emails
+- Editable standard Email Templates created by Guided Setup
+- Comma-separated reminder thresholds such as `90,60,30,14,7,1`
+- Customer Contact recipient resolution with optional Property Manager copy
+- Deduplicated EstateFlow Notification Log for every recipient/event
+- Email sending remains disabled until the administrator enables it and configures an outgoing Email Account
 
 ### Hotel, lodge and short-stay operations
 
@@ -128,6 +143,8 @@ flowchart LR
 ```
 
 - Rent, sale, short-stay and housing listings
+- Public responsive marketplace at `/properties` with image, price, details and contact information
+- Active/published/expired visibility controlled from Property Listing
 - Owner, sales partner, internal agent, channel, asking price and listing validity
 - Enquiries for rent, purchase, short stay, housing or management services
 - Viewing schedule, assigned agent, visitor feedback and next action
@@ -218,7 +235,11 @@ The custom `EstateFlow Command Center` is a responsive Frappe Desk page. It give
 - Upcoming arrivals and lease expiries
 - One-click actions for booking, leasing, maintenance, enquiries, housing and meter readings
 
-Filters are available for company, property and date period. Every card drills into the relevant ERPNext list or report.
+Filters are available for company, portfolio, property and date period. Every card drills into the relevant ERPNext list or report.
+
+### What a Portfolio means
+
+A Portfolio is the reporting and management group above properties. Use it for one owner, a housing program, hotel group, development, branch, managed mandate or investment fund. It does not replace ERPNext Company: Company remains the legal/accounting entity, while Portfolio groups operational assets inside that company. Portfolio Performance compares spaces, occupancy, billed income, collection, outstanding receivables, linked purchase expense and operating margin. One portfolio can contain many properties; every property can contain many rentable/bookable/sellable spaces.
 
 ### Guided setup
 
@@ -304,8 +325,10 @@ For Tanzania/East Africa, ERPNext tax templates, withholding and local fiscal in
 | Setup | EstateFlow Settings, Property Portfolio |
 | Inventory | Real Estate Property, Property Space, Space Amenity |
 | CRM/agency | Property Listing, Property Enquiry, Viewing Appointment, Property Offer |
-| Stay and rent | Property Reservation, Reservation Charge, Occupancy Agreement, Agreement Charge, Security Deposit Transaction |
+| Stay and rent | Property Reservation, Reservation Charge, Occupancy Agreement, Agreement Charge, Agreement Milestone, Security Deposit Transaction |
+| Billing and communication | Contract Billing Event, EstateFlow Notification Log |
 | Property sale | Property Sale Contract, Sale Installment, Real Estate Commission |
+| Client acceptance | EstateFlow UAT Run, EstateFlow UAT Result |
 | Facilities | Maintenance Request, Property Work Order, Work Order Material, Property Inspection, Inspection Item |
 | Utilities | Utility Meter, Utility Reading |
 | Housing | Housing Application, Property Allocation |
@@ -344,12 +367,23 @@ Assign `EstateFlow Portal User` and link the website User to a Customer Contact.
 
 ## Reports included
 
-1. **Availability Register** — filter company, property, type, occupancy and intended use
-2. **Rent Roll** — active agreement, tenant, term, recurring charges, deposit and next bill
-3. **Lease Expiry** — date window, days remaining, notice period and renewal option
-4. **Command Center** — live operational and financial summary
+1. **Availability Register** — company/property/type/occupancy/intended use
+2. **Rent Roll** — tenant, term, recurring charges, deposit and next bill
+3. **Lease Expiry** — end date, days remaining, notice and renewal
+4. **Contract Billing Tracker** — contract/source/invoice/billed/paid/outstanding/status
+5. **Portfolio Performance** — spaces, occupancy, billing, collection, expense and operating margin
+6. **Hotel Operations** — arrivals, departures, in-house state, room status and folio balance
+7. **Maintenance SLA** — priority, due date, overdue status, assignment and work order
+8. **Real Estate Sales Pipeline** — enquiry, viewing, offers, agent and best value
+9. **Housing Allocation Register** — applicant, scheme, space, tenancy/sale conversion
+10. **EstateFlow UAT Summary** — test result, evidence, severity and issue tracking
+11. **Command Center** — live operational and financial summary
 
-Standard ERPNext reports add Accounts Receivable, General Ledger, Profit and Loss, Purchase Analytics, Stock Ledger and Project profitability. Use property cost centres/projects and EstateFlow reference fields to build additional organization-specific reports.
+Standard ERPNext reports add Accounts Receivable, General Ledger, Profit and Loss, Purchase Analytics, Stock Ledger and Project profitability. Every client presentation should reconcile the EstateFlow reports to these source documents and GL reports.
+
+### Client Test Center and UAT
+
+Open `/app/estateflow-test-center`, choose a business case and create an **EstateFlow UAT Run**. The app loads common controls plus the selected landlord, hotel/lodge, property management, brokerage, housing, developer, commercial, HOA, investment or facilities template. Every test stores preconditions, steps, expected operational/accounting result, actual result, status, severity, evidence, issue reference, tester and timestamp. Submit the run only after all cases are resolved; the app calculates pass/fail and supports client sign-off. A formatted Excel workbook is included at `docs/EstateFlow_UAT_Testing_Template.xlsx` and from the Test Center download button.
 
 ---
 
@@ -453,14 +487,18 @@ Before live transactions:
 | `estateflow.api.setup.complete_setup` | Save modes and create safe service masters |
 | `estateflow.api.availability.get_available_spaces` | Availability search by property, dates and use |
 | `estateflow.api.dashboard.get_command_center` | Permission-aware dashboard aggregates |
-| `estateflow.api.billing.generate_agreement_invoice` | Create one agreement period invoice |
+| `estateflow.api.billing.generate_agreement_invoice` | Create one recurring agreement period invoice |
+| `estateflow.api.billing.generate_agreement_milestone_invoices` | Invoice due one-time agreement milestones |
 | `estateflow.api.billing.create_reservation_invoice` | Create stay/reservation invoice |
 | `estateflow.api.billing.generate_sale_installment_invoices` | Invoice due sale milestones |
 | `estateflow.api.billing.create_utility_invoice` | Bill submitted meter consumption |
-| `estateflow.api.billing.run_daily_billing` | Scheduled rent and installment billing |
-| `estateflow.api.operations.run_daily_operations` | Expire holds/listings/offers and close agreement occupancy |
+| `estateflow.api.billing_tracking.rebuild_billing_ledger` | Link and resync existing property Sales Invoices |
+| `estateflow.api.billing.run_daily_billing` | Scheduled recurring and milestone billing |
+| `estateflow.api.operations.run_daily_operations` | Activate/expire contracts and expire holds/listings/offers |
+| `estateflow.api.notifications.run_daily_notifications` | Contract expiry and overdue email reminders |
+| `estateflow.api.uat.preview_test_template` | Return the controlled client UAT template |
 
-Availability uses date-overlap rules across both reservations and occupancy agreements. Duplicate billing is prevented using agreement/sale references and billing-period fields on Sales Invoice.
+Availability uses date-overlap rules across reservations, pending contracts and active occupancy agreements. Duplicate billing is prevented using agreement, milestone and billing-period references on Sales Invoice.
 
 ---
 
@@ -478,7 +516,7 @@ Availability uses date-overlap rules across both reservations and occupancy agre
 
 ## Build status and next milestones
 
-`0.1.5` is the first broad working foundation. It includes 26 DocTypes, onboarding, Command Center, availability engine, hotel/lease/sale/housing processes, accounting and deposit document creation, utility billing, facilities procurement handoff, three reports and a customer portal.
+`0.2.0` includes 31 DocTypes, onboarding, Command Center, contract lifecycle automation, recurring/milestone billing, billing/payment tracking, configurable email logs, public property listings, portfolio analytics, hotel/lease/sale/housing/facilities processes, ten reports, the client Test Center, UAT records, Excel test workbook and customer portal.
 
 Planned hardening and extensions:
 

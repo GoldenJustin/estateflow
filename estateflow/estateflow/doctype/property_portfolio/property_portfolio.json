@@ -11,6 +11,9 @@
   "portfolio_type",
   "identity_column",
   "status",
+  "currency",
+  "target_occupancy",
+  "portfolio_cost_center",
   "owner_customer",
   "portfolio_manager",
   "details_section",
@@ -81,6 +84,23 @@
    "fieldname": "description",
    "fieldtype": "Text Editor",
    "label": "Description"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Portfolio Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "target_occupancy",
+   "fieldtype": "Percent",
+   "label": "Target Occupancy %"
+  },
+  {
+   "fieldname": "portfolio_cost_center",
+   "fieldtype": "Link",
+   "label": "Portfolio Cost Center",
+   "options": "Cost Center"
   }
  ],
  "index_web_pages_for_search": 0,

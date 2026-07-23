@@ -241,6 +241,96 @@
    "link_type": "Page",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Public Property Listings",
+   "link_to": "properties",
+   "link_type": "URL",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Contract Billing Tracker",
+   "link_to": "Contract Billing Tracker",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Portfolio Performance",
+   "link_to": "Portfolio Performance",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Hotel Operations",
+   "link_to": "Hotel Operations",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Maintenance SLA",
+   "link_to": "Maintenance SLA",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Real Estate Sales Pipeline",
+   "link_to": "Real Estate Sales Pipeline",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Housing Allocation Register",
+   "link_to": "Housing Allocation Register",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "EstateFlow Test Center",
+   "link_to": "estateflow-test-center",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "UAT Runs",
+   "link_to": "EstateFlow UAT Run",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "EstateFlow UAT Summary",
+   "link_to": "EstateFlow UAT Summary",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
  "modified": "2026-07-15 00:00:00.000000",
@@ -288,6 +378,20 @@
    "doc_view": "List",
    "label": "Maintenance",
    "link_to": "Maintenance Request",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "",
+   "label": "Test Center",
+   "link_to": "estateflow-test-center",
+   "type": "Page"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Billing Tracker",
+   "link_to": "Contract Billing Event",
    "type": "DocType"
   }
  ],

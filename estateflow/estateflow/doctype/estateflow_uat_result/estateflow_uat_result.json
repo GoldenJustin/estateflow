@@ -1,0 +1,122 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-07-23 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "test_id",
+  "module",
+  "scenario",
+  "preconditions",
+  "test_steps",
+  "expected_result",
+  "accounting_result",
+  "status",
+  "severity",
+  "actual_result",
+  "evidence",
+  "issue_reference",
+  "tested_by",
+  "tested_on"
+ ],
+ "fields": [
+  {
+   "fieldname": "test_id",
+   "fieldtype": "Data",
+   "label": "Test ID",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "module",
+   "fieldtype": "Data",
+   "label": "Module",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "scenario",
+   "fieldtype": "Small Text",
+   "label": "Scenario",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "preconditions",
+   "fieldtype": "Small Text",
+   "label": "Preconditions"
+  },
+  {
+   "fieldname": "test_steps",
+   "fieldtype": "Text",
+   "label": "Test Steps"
+  },
+  {
+   "fieldname": "expected_result",
+   "fieldtype": "Text",
+   "label": "Expected Result",
+   "reqd": 1
+  },
+  {
+   "fieldname": "accounting_result",
+   "fieldtype": "Small Text",
+   "label": "Expected Accounting"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Not Tested\nPass\nFail\nBlocked\nNot Applicable",
+   "default": "Not Tested",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "severity",
+   "fieldtype": "Select",
+   "label": "Severity",
+   "options": "Low\nMedium\nHigh\nCritical",
+   "default": "Medium"
+  },
+  {
+   "fieldname": "actual_result",
+   "fieldtype": "Text",
+   "label": "Actual Result"
+  },
+  {
+   "fieldname": "evidence",
+   "fieldtype": "Attach",
+   "label": "Evidence"
+  },
+  {
+   "fieldname": "issue_reference",
+   "fieldtype": "Data",
+   "label": "Issue / Ticket Reference"
+  },
+  {
+   "fieldname": "tested_by",
+   "fieldtype": "Link",
+   "label": "Tested By",
+   "options": "User"
+  },
+  {
+   "fieldname": "tested_on",
+   "fieldtype": "Datetime",
+   "label": "Tested On"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-07-23 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "EstateFlow",
+ "name": "EstateFlow UAT Result",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0,
+ "istable": 1,
+ "editable_grid": 1
+}

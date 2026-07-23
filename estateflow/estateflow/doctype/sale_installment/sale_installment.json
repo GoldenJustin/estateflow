@@ -11,7 +11,9 @@
   "amount",
   "item_code",
   "status",
-  "sales_invoice"
+  "sales_invoice",
+  "paid_amount",
+  "outstanding_amount"
  ],
  "fields": [
   {
@@ -62,6 +64,22 @@
    "fieldtype": "Link",
    "label": "Sales Invoice",
    "options": "Sales Invoice",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "paid_amount",
+   "fieldtype": "Currency",
+   "label": "Paid Amount",
+   "options": "parent.currency",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "outstanding_amount",
+   "fieldtype": "Currency",
+   "label": "Outstanding",
+   "options": "parent.currency",
    "read_only": 1,
    "in_list_view": 1
   }

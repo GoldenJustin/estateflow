@@ -19,6 +19,26 @@ MODE_FIELDS = {
     "investment": "enable_investment",
 }
 
+DEFAULT_EMAIL_TEMPLATES = {
+    "EstateFlow Contract Activation": ("Agreement {{ doc.name }} is active", "<p>Hello {{ customer }},</p><p>Your agreement for <b>{{ property }} / {{ space }}</b> is active from {{ doc.start_date }} to {{ doc.end_date }}.</p>"),
+    "EstateFlow Contract Expiry": ("Agreement {{ doc.name }} expires in {{ days }} day(s)", "<p>Your agreement for <b>{{ property }} / {{ space }}</b> expires on {{ doc.end_date }}.</p>"),
+    "EstateFlow Contract Expired": ("Agreement {{ doc.name }} has expired", "<p>Your agreement for <b>{{ property }} / {{ space }}</b> ended on {{ doc.end_date }}.</p>"),
+    "EstateFlow Invoice Issued": ("Invoice {{ doc.name }} issued", "<p>Invoice <b>{{ doc.name }}</b> for {{ doc.grand_total }} {{ doc.currency }} is due on {{ doc.due_date }}.</p>"),
+    "EstateFlow Payment Receipt": ("Payment receipt {{ doc.name }}", "<p>We received payment <b>{{ doc.name }}</b> amounting to {{ doc.paid_amount }}.</p>"),
+    "EstateFlow Overdue Reminder": ("Invoice {{ doc.name }} is overdue", "<p>Invoice <b>{{ doc.name }}</b> has {{ doc.outstanding_amount }} {{ doc.currency }} outstanding.</p>"),
+    "EstateFlow Reservation Confirmation": ("Reservation {{ doc.name }} confirmed", "<p>Your reservation at <b>{{ property }}</b>, {{ space }}, is confirmed from {{ doc.arrival_date }} to {{ doc.departure_date }}.</p>"),
+}
+
+TEMPLATE_FIELDS = {
+    "activation_email_template": "EstateFlow Contract Activation",
+    "expiry_email_template": "EstateFlow Contract Expiry",
+    "contract_expired_email_template": "EstateFlow Contract Expired",
+    "invoice_email_template": "EstateFlow Invoice Issued",
+    "payment_receipt_email_template": "EstateFlow Payment Receipt",
+    "overdue_email_template": "EstateFlow Overdue Reminder",
+    "reservation_email_template": "EstateFlow Reservation Confirmation",
+}
+
 DEFAULT_ITEMS = (
     ("ESTATEFLOW-RENT", "Property Rent", 1, 0),
     ("ESTATEFLOW-SERVICE-CHARGE", "Property Service Charge", 1, 0),
@@ -67,11 +87,16 @@ def complete_setup(company, business_modes=None, property_label="Property", crea
     settings.default_income_account = company_defaults.default_income_account
     settings.maintenance_expense_account = company_defaults.default_expense_account
     settings.property_label = property_label or "Property"
+    settings.configuration_version = "0.2.0"
     for fieldname in MODE_FIELDS.values():
         settings.set(fieldname, 0)
     for mode in business_modes:
         if mode in MODE_FIELDS:
             settings.set(MODE_FIELDS[mode], 1)
+    created_templates = create_default_email_templates()
+    for fieldname, template_name in TEMPLATE_FIELDS.items():
+        if not settings.get(fieldname):
+            settings.set(fieldname, template_name)
     settings.save()
 
     created_items = []
@@ -99,8 +124,22 @@ def complete_setup(company, business_modes=None, property_label="Property", crea
         "settings": settings.name,
         "portfolio": portfolio,
         "created_items": created_items,
+        "created_email_templates": created_templates,
         "route": "/app/estateflow-command-center",
     }
+
+
+def create_default_email_templates():
+    created = []
+    for name, (subject, response) in DEFAULT_EMAIL_TEMPLATES.items():
+        if frappe.db.exists("Email Template", name):
+            continue
+        frappe.get_doc({
+            "doctype": "Email Template", "name": name, "subject": subject,
+            "response": response, "use_html": 1,
+        }).insert(ignore_permissions=True)
+        created.append(name)
+    return created
 
 
 def create_default_items(company, company_defaults=None):

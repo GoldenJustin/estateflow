@@ -20,7 +20,7 @@ class TestEstateFlowStaticSchema(unittest.TestCase):
             cls.doctypes[data["name"]] = (path, data)
 
     def test_expected_doctype_count(self):
-        self.assertEqual(len(self.doctypes), 26)
+        self.assertEqual(len(self.doctypes), 31)
 
     def test_field_order_is_complete_and_unique(self):
         for name, (path, data) in self.doctypes.items():
@@ -65,7 +65,7 @@ class TestEstateFlowStaticSchema(unittest.TestCase):
             "Property Offer", "Property Reservation", "Occupancy Agreement",
             "Property Sale Contract", "Property Work Order", "Property Inspection",
             "Utility Reading", "Property Allocation", "Real Estate Commission",
-            "Security Deposit Transaction",
+            "Security Deposit Transaction", "EstateFlow UAT Run",
         }
         actual = {name for name, (_, data) in self.doctypes.items() if data.get("is_submittable")}
         self.assertEqual(actual, expected)
@@ -77,9 +77,11 @@ class TestEstateFlowStaticSchema(unittest.TestCase):
         public_stylesheet = PACKAGE / "public" / "css" / "estateflow.css"
         command_center_stylesheet = MODULE / "page" / "estateflow_command_center" / "estateflow_command_center.css"
         guide_stylesheet = MODULE / "page" / "estateflow_guide" / "estateflow_guide.css"
+        test_center_stylesheet = MODULE / "page" / "estateflow_test_center" / "estateflow_test_center.css"
         self.assertTrue(public_stylesheet.is_file())
         self.assertTrue(command_center_stylesheet.is_file())
         self.assertTrue(guide_stylesheet.is_file())
+        self.assertTrue(test_center_stylesheet.is_file())
         self.assertGreater(command_center_stylesheet.stat().st_size, 1000)
         self.assertGreater(guide_stylesheet.stat().st_size, command_center_stylesheet.stat().st_size)
         # Standard Page CSS is read into the Page.style field during sync, so

@@ -38,6 +38,13 @@
   "auto_submit_invoices",
   "invoice_agreements_daily",
   "invoice_sale_installments_daily",
+  "contract_automation_section",
+  "auto_activate_contracts",
+  "auto_expire_contracts",
+  "generate_first_invoice_on_activation",
+  "automation_column",
+  "default_billing_start_policy",
+  "default_invoice_lead_days",
   "operations_tab",
   "operations_section",
   "default_check_in_time",
@@ -46,7 +53,35 @@
   "operations_column",
   "default_sla_hours",
   "prevent_double_booking",
-  "mark_space_dirty_on_checkout"
+  "mark_space_dirty_on_checkout",
+  "notifications_tab",
+  "notification_master_section",
+  "enable_email_notifications",
+  "notification_sender",
+  "copy_property_manager",
+  "notification_column",
+  "contract_expiry_reminder_days",
+  "overdue_reminder_days",
+  "contract_email_section",
+  "send_contract_activation_email",
+  "activation_email_template",
+  "send_contract_expiry_alerts",
+  "expiry_email_template",
+  "contract_email_column",
+  "send_contract_expired_email",
+  "contract_expired_email_template",
+  "billing_email_section",
+  "send_invoice_email",
+  "invoice_email_template",
+  "send_payment_receipt_email",
+  "payment_receipt_email_template",
+  "billing_email_column",
+  "send_overdue_reminders",
+  "overdue_email_template",
+  "reservation_email_section",
+  "send_reservation_confirmation_email",
+  "reservation_email_template",
+  "configuration_version"
  ],
  "fields": [
   {
@@ -291,6 +326,211 @@
    "fieldtype": "Check",
    "label": "Mark Space Dirty on Checkout",
    "default": "1"
+  },
+  {
+   "fieldname": "contract_automation_section",
+   "fieldtype": "Section Break",
+   "label": "Contract Automation"
+  },
+  {
+   "fieldname": "auto_activate_contracts",
+   "fieldtype": "Check",
+   "label": "Automatically Activate Contracts on Start Date",
+   "default": "1"
+  },
+  {
+   "fieldname": "auto_expire_contracts",
+   "fieldtype": "Check",
+   "label": "Automatically Expire Contracts After End Date",
+   "default": "1"
+  },
+  {
+   "fieldname": "generate_first_invoice_on_activation",
+   "fieldtype": "Check",
+   "label": "Generate First Invoice on Activation",
+   "default": "1"
+  },
+  {
+   "fieldname": "automation_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "default_billing_start_policy",
+   "fieldtype": "Select",
+   "label": "Default Invoice Trigger",
+   "options": "On Activation\nOn Period Start\nDays Before Period Start",
+   "default": "On Activation"
+  },
+  {
+   "fieldname": "default_invoice_lead_days",
+   "fieldtype": "Int",
+   "label": "Default Invoice Lead Days",
+   "default": "0",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "notifications_tab",
+   "fieldtype": "Tab Break",
+   "label": "Email Notifications"
+  },
+  {
+   "fieldname": "notification_master_section",
+   "fieldtype": "Section Break",
+   "label": "Email Configuration"
+  },
+  {
+   "fieldname": "enable_email_notifications",
+   "fieldtype": "Check",
+   "label": "Enable EstateFlow Email Notifications",
+   "default": "0"
+  },
+  {
+   "fieldname": "notification_sender",
+   "fieldtype": "Link",
+   "label": "Sender Email Account",
+   "options": "Email Account"
+  },
+  {
+   "fieldname": "copy_property_manager",
+   "fieldtype": "Check",
+   "label": "Copy Property Manager",
+   "default": "1"
+  },
+  {
+   "fieldname": "notification_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "contract_expiry_reminder_days",
+   "fieldtype": "Data",
+   "label": "Contract Expiry Reminder Days",
+   "default": "90,60,30,14,7,1",
+   "description": "Comma-separated days before contract end."
+  },
+  {
+   "fieldname": "overdue_reminder_days",
+   "fieldtype": "Data",
+   "label": "Overdue Reminder Days",
+   "default": "1,7,14,30",
+   "description": "Comma-separated days after invoice due date."
+  },
+  {
+   "fieldname": "contract_email_section",
+   "fieldtype": "Section Break",
+   "label": "Contract Emails"
+  },
+  {
+   "fieldname": "send_contract_activation_email",
+   "fieldtype": "Check",
+   "label": "Send Contract Activation Email",
+   "default": "1"
+  },
+  {
+   "fieldname": "activation_email_template",
+   "fieldtype": "Link",
+   "label": "Activation Email Template",
+   "options": "Email Template"
+  },
+  {
+   "fieldname": "send_contract_expiry_alerts",
+   "fieldtype": "Check",
+   "label": "Send Contract Expiry Reminders",
+   "default": "1"
+  },
+  {
+   "fieldname": "expiry_email_template",
+   "fieldtype": "Link",
+   "label": "Expiry Email Template",
+   "options": "Email Template"
+  },
+  {
+   "fieldname": "contract_email_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "send_contract_expired_email",
+   "fieldtype": "Check",
+   "label": "Send Contract Expired Email",
+   "default": "1"
+  },
+  {
+   "fieldname": "contract_expired_email_template",
+   "fieldtype": "Link",
+   "label": "Contract Expired Email Template",
+   "options": "Email Template"
+  },
+  {
+   "fieldname": "billing_email_section",
+   "fieldtype": "Section Break",
+   "label": "Billing and Receipt Emails"
+  },
+  {
+   "fieldname": "send_invoice_email",
+   "fieldtype": "Check",
+   "label": "Send Invoice Issued Email",
+   "default": "1"
+  },
+  {
+   "fieldname": "invoice_email_template",
+   "fieldtype": "Link",
+   "label": "Invoice Email Template",
+   "options": "Email Template"
+  },
+  {
+   "fieldname": "send_payment_receipt_email",
+   "fieldtype": "Check",
+   "label": "Send Payment Receipt Email",
+   "default": "1"
+  },
+  {
+   "fieldname": "payment_receipt_email_template",
+   "fieldtype": "Link",
+   "label": "Payment Receipt Email Template",
+   "options": "Email Template"
+  },
+  {
+   "fieldname": "billing_email_column",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "send_overdue_reminders",
+   "fieldtype": "Check",
+   "label": "Send Overdue Invoice Reminders",
+   "default": "1"
+  },
+  {
+   "fieldname": "overdue_email_template",
+   "fieldtype": "Link",
+   "label": "Overdue Email Template",
+   "options": "Email Template"
+  },
+  {
+   "fieldname": "reservation_email_section",
+   "fieldtype": "Section Break",
+   "label": "Reservation Emails"
+  },
+  {
+   "fieldname": "send_reservation_confirmation_email",
+   "fieldtype": "Check",
+   "label": "Send Reservation Confirmation Email",
+   "default": "1"
+  },
+  {
+   "fieldname": "reservation_email_template",
+   "fieldtype": "Link",
+   "label": "Reservation Confirmation Template",
+   "options": "Email Template"
+  },
+  {
+   "fieldname": "configuration_version",
+   "fieldtype": "Data",
+   "label": "Configuration Version",
+   "hidden": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 0,

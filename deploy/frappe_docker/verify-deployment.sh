@@ -13,8 +13,8 @@ check_asset() {
   [[ "$result" == 200\ text/css* ]]
 }
 
-check_asset "/assets/estateflow/css/estateflow.css?v=0.1.5"
-check_asset "/assets/estateflow/css/estateflow-guide.css?v=0.1.5"
+check_asset "/assets/estateflow/css/estateflow.css?v=0.2.0"
+check_asset "/assets/estateflow/css/estateflow-guide.css?v=0.2.0"
 
 docker exec "${BACKEND_CONTAINER}" bash -lc "
 cd /home/frappe/frappe-bench &&

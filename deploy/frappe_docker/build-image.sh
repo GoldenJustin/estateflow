@@ -2,7 +2,7 @@
 set -euo pipefail
 
 FRAPPE_DOCKER_ROOT="${1:-$PWD}"
-IMAGE_TAG="${IMAGE_TAG:-golden-erpnext:16-estateflow-0.1.5}"
+IMAGE_TAG="${IMAGE_TAG:-golden-erpnext:16-estateflow-0.2.0}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 APPS_JSON="${SCRIPT_DIR}/apps.json"
 

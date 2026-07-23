@@ -27,7 +27,7 @@ def _property_condition(alias, company=None, property_name=None, params=None):
 
 
 @frappe.whitelist()
-def get_command_center(company=None, property=None, from_date=None, to_date=None):
+def get_command_center(company=None, portfolio=None, property=None, from_date=None, to_date=None):
     if not frappe.has_permission("Real Estate Property", "read"):
         frappe.throw(_("You do not have permission to view EstateFlow."), frappe.PermissionError)
 
@@ -35,11 +35,13 @@ def get_command_center(company=None, property=None, from_date=None, to_date=None
     company = company or settings.company
     from_date = getdate(from_date or add_days(nowdate(), -30))
     to_date = getdate(to_date or nowdate())
-    params = {"company": company, "property": property, "from_date": from_date, "to_date": to_date, "today": nowdate()}
+    params = {"company": company, "portfolio": portfolio, "property": property, "from_date": from_date, "to_date": to_date, "today": nowdate()}
 
     pcond = ""
     if company:
         pcond += " and p.company = %(company)s"
+    if portfolio:
+        pcond += " and p.portfolio = %(portfolio)s"
     if property:
         pcond += " and p.name = %(property)s"
 
@@ -63,8 +65,10 @@ def get_command_center(company=None, property=None, from_date=None, to_date=None
     occupancy_rate = (occupied / rentable_base * 100) if rentable_base else 0
 
     invoice_property_filter = ""
+    if portfolio:
+        invoice_property_filter += " and si.estateflow_property in (select name from `tabReal Estate Property` where portfolio = %(portfolio)s)"
     if property:
-        invoice_property_filter = " and si.estateflow_property = %(property)s"
+        invoice_property_filter += " and si.estateflow_property = %(property)s"
     billed = _scalar(
         f"""
         select coalesce(sum(si.grand_total), 0)
@@ -172,7 +176,7 @@ def get_command_center(company=None, property=None, from_date=None, to_date=None
         "activity": activity,
         "upcoming": upcoming,
         "currency": settings.default_currency,
-        "filters": {"company": company, "property": property, "from_date": from_date, "to_date": to_date},
+        "filters": {"company": company, "portfolio": portfolio, "property": property, "from_date": from_date, "to_date": to_date},
         "business_modes": [
             key for key, fieldname in {
                 "landlord": "enable_landlord",
